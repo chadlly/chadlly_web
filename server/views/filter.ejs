@@ -1,51 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kor">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <style>
-        .title{
-            margin: 30px 0px;
-            text-align: center;
-            font-size: 60px;
-            font-weight: bold;
-        }
-        .contents {
-            width: 800px;
-            margin : 0px auto;
-            border-style:solid;
-            border-color:black;
-            align-items: center;
-        }        
-        .question {
-            padding: 10px;
-            border-bottom: 1px groove grey
-        }
-        .query{
-            margin: 10px;
-            font-size: 25px;
-        }
-        .answer{
-            margin: 10px;
-            height: 20px;
-        }
-        .transmit{
-            text-align: center;
-            margin: 30px auto;
-        }
-        .complete{
-            width:150px;
-            height:50px;
-            background-color:skyblue;
-            font-size:2rem;
-            border-radius: 1rem;
-            border-style:none;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/styles/dist/filter.css" rel="stylesheet" type="text/css"> 
 </head>
 <body>
     <div class="main">
-        <button> 홈으로 </button>
+        <button id="gobackbtn"> 홈으로 </button>
         <div class="title">나만의 코스 계획하기</div>
         <div class="contents">
             <div class="question">
@@ -89,5 +52,10 @@
             <button class="complete">입력 완료</button>
         </div>
     </div>
+
+
 </body>
+
+<script src="/script/dist/filter.dev.js" type="text/javascript" ></script>
+
 </html>

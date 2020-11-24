@@ -66,5 +66,12 @@ router.get("/chadlly/filter", function(req,res,next){
   res.render("filter");
 });
 
+router.get("/chadlly/course", function(req,res,next){
+
+  console.log("course page");
+  res.render("detailpage");
+});
+
+
 
 module.exports = router;
