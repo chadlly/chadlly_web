@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="utf-8">
+<title>차들이</title>
+
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- <div class="intro_bg"> -->
+      <!-- <div class="header"> -->
+        <div class="searchArea">
+          <form>
+          <input type="search" placeholder="Search">
+          <span>검색</span>
+          </form>
+   
+      </div>
+      <ul class="nav1">
+        <li><a href="#"></a>Home</li>
+        <li><a href="#"></a>Menu1</li>
+        <li><a href="#"></a>Menu2</li>
+      </ul>
+   
+      <ul class="nav2">
+        <li><a href="#"></a>Menu3</li>
+        <li><a href="#"></a>Menu4</li>
+        <li><a href="#"></a>Menu5</li>
+      </ul>
+   
+    <a href="#a" class="total">
+      <span>메뉴</span>
+    </a>
+  </div>
+  
+ <div id="map" style="width:100%;height:100vh;">z-index:-100</div>
+
+	<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=2c32bcbd6cb55928dc1395f28a59aeec"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+		    mapOption = {
+		        center: new kakao.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
+		        level: 3, // 지도의 확대 레벨
+		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+		    };
+
+		// 지도를 생성한다
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+	</script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .title{
+            margin: 30px 0px;
+            text-align: center;
+            font-size: 60px;
+            font-weight: bold;
+        }
+        .contents {
+            width: 800px;
+            margin : 0px auto;
+            border-style:solid;
+            border-color:black;
+            align-items: center;
+        }        
+        .question {
+            padding: 10px;
+            border-bottom: 1px groove grey
+        }
+        .query{
+            margin: 10px;
+            font-size: 25px;
+        }
+        .answer{
+            margin: 10px;
+            height: 20px;
+        }
+        .transmit{
+            text-align: center;
+            margin: 30px auto;
+        }
+        .complete{
+            width:150px;
+            height:50px;
+            background-color:skyblue;
+            font-size:2rem;
+            border-radius: 1rem;
+            border-style:none;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <button> 홈으로 </button>
+        <div class="title">나만의 코스 계획하기</div>
+        <div class="contents">
+            <div class="question">
+                <div class="query">지역을 정해주세요.</div>
+                <input type=text class="answer" placeholder="ex) 인천" size=100>
+            </div>
+            <div class="question">
+                <div class="query">날짜를 정해주세요.</div>
+                <input type=text class="answer" placeholder="ex) 20201119" size=100>
+            </div>
+            <div class="question">
+                <div class="query">시간대를 정해주세요.</div>
+                <input type=text class="answer" placeholder="ex) 저녁" size=100>
+            </div>
+            <div class="question">
+                <div class="query">테마를 정해주세요.</div>
+                <input type=text class="answer" placeholder="ex) 데이트" size=100>
+            </div>
+            <div class="question">
+                <div class="query">동반인원 설정해주세요.</div>
+                <input type=text class="answer" placeholder="ex) 3인" size=100>
+            </div>
+            <div class="question">
+                <div class="query">소요 시간을 정해주세요.</div>
+                <input type=text class="answer" placeholder="ex) 2시간" size=100>
+            </div>
+            <div class="question">
+                <div class="query">여기는 꼭 가고 싶어요.</div>
+                <input type=text class="answer" placeholder="ex) 박물관" size=100>
+            </div>
+            <div class="question">
+                <div class="query">여기는 가기 싫어요.</div>
+                <input type=text class="answer" placeholder="ex) 유적지" size=100>
+            </div>
+            <div class="question">
+                <div class="query">예상 비용을 정해주세요.</div>
+                <input type=text class="answer" placeholder="ex) min 20000 max 100000" size=100>
+            </div>
+        </div>
+        <div class="transmit">
+            <button class="complete">입력 완료</button>
+        </div>
+    </div>
+</body>
+</html>
