@@ -10,7 +10,32 @@ var usersRouter = require('./routes/users');
 //Express 기본 모듈 불러오기
 var http = require('http');
 
+var MongoClient = require('mongodb').MongoClient;
+
+var database;
+var users;
+
+function connectDB(){
+	var databaseUrl = 'mongodb://localhost:8080';
+
+	MongoClient.connect(databaseUrl, {useNewUrlParser: true, useUnifiedTopology: true}, function(err,db){
+	if(err){
+	        console.log('데이터 베이스 연결 에러 발생 !');
+		return; 
+	}
+        console.log('데이터베이스 연결 -> ' + databaseUrl);
+        database = db.db('local');
+        users = database.collection("user");
+        console.log("db connected!");
+    });
+}   
+    
+connectDB(); 
+
+
 var app = express();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
