@@ -28,6 +28,10 @@ function getLocations(){
     return locations;
 }
 
+
+
+
+
 module.exports.initTest = initTest;
 module.exports.printLocations = printLocations;
 module.exports.getLocations = getLocations;
