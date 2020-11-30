@@ -26,17 +26,37 @@ var userSchema = new Schema({
     require: false,
     unique: false
   },
-  longitude: {
+  time: {
+    type: String,
+    require: true,
+    unique: false
+  },
+  theme: {
+    type: String,
+    require: true,
+    unique: false
+  },
+  peoplehead: {
     type: Number,
+    require: true,
+    unique: false
+  },
+  traveltime: {
+    type: String,
     required: true,
     unique: false
   },
-  latitude: {
-    type: Number,
+  interest: {
+    type: String,
     required: true,
     unique: false
   },
-  visitType: {
+  nointerest: {
+    type: String,
+    required: true,
+    unique: false
+  },
+  wantprice: {
     type: String,
     required: true,
     unique: false

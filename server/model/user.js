@@ -11,13 +11,11 @@ const userSchema = new Schema({
             required: true,
             unique: true,
         },
-
         latitude: {
             type: Number,
             require: false,
             unique: false,
         },
-
         longitude: {
             type: Number,
             require: false,
@@ -30,23 +28,47 @@ const userSchema = new Schema({
         require: false,
         unique: false,
     },
-
-
-    longitude: {
-        type: Number,
-        required: true,
+    time: {
+        type: String,
+        require: true,
         unique: false,
     },
-    latitude: {
-        type: Number,
-        required: true,
+    
+    theme: {
+        type: String,
+        require: true,
         unique: false,
     },
-    visitType: {
+
+    peoplehead: {
+        type: Number,
+        require: true,
+        unique: false,
+    },
+
+    traveltime: {
         type: String,
         required: true,
         unique: false,
     },
+
+    interest: {
+        type: String,
+        required: true,
+        unique: false,
+    },
+    nointerest: {
+        type: String,
+        required: true,
+        unique: false,
+    },
+
+    wantprice: {
+        type: String,
+        required: true,
+        unique: false,
+    },
+
 })
 
-module.exports = mongoose.model("Location", locationSchema);
+module.exports = mongoose.model("User", userSchema);
