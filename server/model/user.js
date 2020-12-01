@@ -4,25 +4,21 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
 
-    currentPlace: {
-
-        region : {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        latitude: {
-            type: Number,
-            require: false,
-            unique: false,
-        },
-        longitude: {
-            type: Number,
-            require: false,
-            unique: false,
-        },
+    region : {
+        type: String,
+        required: true,
+        unique: true,
     },
-
+    latitude: {
+        type: Number,
+        require: false,
+        unique: false,
+    },
+    longitude: {
+        type: Number,
+        require: false,
+        unique: false,
+    },
     date: {
         type: String,
         require: false,

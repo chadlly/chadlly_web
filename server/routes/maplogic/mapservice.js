@@ -42,7 +42,8 @@ function connectdb(){
     
     console.log("db connected!");
     
-    findLocations();
+    getNearestPlaces(37.504104, 126.956710, 1);
+
     });
 }
 
@@ -79,8 +80,7 @@ function getLocations(){
     return locations;
 }
 
-function findLocations(){
-
+function getAllLocation(){
     categoryCollection.find({}).toArray(function(err, result){
         if(err){
             callback("dbOpenError", "none");
@@ -99,18 +99,66 @@ function findLocations(){
     })
 }
 
-function getNearestPlaces(lat, lng, callback){
-    
+// conversion rules
+//1. 0.1 lat diff => 11 km approx. -> we set to 10
+//2. 0.1 lng diff => 9 km approx. -> we set to 10
 
+
+
+function getDistance(lat1, lng1, lat2, lng2, callback){
+
+
+}
+
+
+function getNearestPlaces(lat, lng, userPref, callback){
+    // lat, lng, userpref(1~3), 30km, 60km, 90km
+    let latdiff, lngdiff;
+    if(userPref == 1){
+        latdiff = 0.3;
+        lngdiff = 0.3;
+    }
+    else if(userPref == 2){
+        latdiff = 0.6;
+        lngdiff = 0.6;
+    }
+    else if(userPref == 3){
+        latdiff = 0.9;
+        lngdiff = 0.9;
+    }
+
+    // access db
+
+    categoryCollection.find({latitude : {$gt: lat - latdiff, $lt: lat + latdiff}, 
+        longitude: {$gt: lng - lngdiff, $lt: lng + lngdiff}}).toArray(function(err, result){
+        if(err){
+            callback("dbOpenError", "none");
+            throw err;
+        }
+        if(result.length > 0){
+            //console.log(result);
+            //callback("", result);
+            travelLocations = result;
+            console.log(travelLocations);
+            callback(result.length, result);
+        }else{
+            console.log('no entry in db');
+            callback("error", "none");
+        }
+    })
 }
 
 
 
 function recommend(){
     
+
 }
 
+function applyFilter(usrdate, usrtime, usrtheme, usrpeoplehead, usrtraveltime, usrinterest, wantprice){
 
+    
+}
 
 
 
