@@ -1,0 +1,33 @@
+.contents {
+    width: 400px;
+    margin : 20px auto;
+    border : 1px solid black;
+    border-bottom : none;
+}      
+.question {
+    border-bottom: 1px groove grey
+}
+.query{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.select-answer{
+    width: 300px;
+    margin: 10px 50px;
+}
+
+.transmit{
+    text-align: center;
+    margin: 20px auto;
+}
+.complete{
+    width:150px;
+    height:50px;
+    background-color:skyblue;
+    font-size:2rem;
+    border-radius: 1rem;
+    border-style:none;
+}
+
