@@ -11,6 +11,7 @@ const Valley = require("../../model/valley");
 const User = require("../../model/user");
 
 const dbutil = require("../dbutils/findbutil");
+const Course = require("../../model/course");
 
 var MongoClient = require("mongodb").MongoClient;
 // db collections variable
@@ -26,6 +27,7 @@ let roadCollection;
 let ruinsCollection;
 let siteCollection;
 let valleyCollection;
+let courseCollection;
 // end
 // db connect code
 
@@ -190,6 +192,41 @@ function fetchRecommends(filteredLocations, callback){
     
 }
 
+function makeTestRecommends(callback){
+    
+    let testlocations = []
+    testlocations.push(travelLocations[4]);
+    testlocations.push(travelLocations[7]);
+    testlocations.push(travelLocations[10]);
+    let testuser = new User({
+        region: "동작구 흑석동",
+        latitude: 37.42421,
+        longitude: 126.56342,
+        date: "2020/12/01",
+        time: "2",
+        theme: "데이트",
+        peoplehead: 3,
+        traveltime: "3",
+        interest: "박물관",
+        nointerest: "계곡",
+        wantprice: "5000",
+    });
+    
+    let testprice = testuser.price;
+    let testtheme = testuser.theme;
+    let testCourse = new Course({
+        name: "테스트 드라이브 코스",
+        userinfo: testuser,
+        locations: testlocations,
+        price: testprice,
+        theme: testtheme,
+    });
+
+    dbutil.saveCourse(testCourse, function(err, result){
+        callback(testCourse);
+    });
+
+}
 
 
 
@@ -197,3 +234,4 @@ function fetchRecommends(filteredLocations, callback){
 module.exports.initTest = initTest;
 module.exports.printLocations = printLocations;
 module.exports.getLocations = getLocations;
+module.exports.makeTestRecommends = makeTestRecommends;

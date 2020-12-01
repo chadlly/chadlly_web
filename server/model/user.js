@@ -7,7 +7,7 @@ const userSchema = new Schema({
     region : {
         type: String,
         required: true,
-        unique: true,
+        unique: false,
     },
     latitude: {
         type: Number,

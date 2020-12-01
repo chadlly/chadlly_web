@@ -64,7 +64,9 @@ router.get("/chadlly/filter", function(req,res,next){
 router.get("/chadlly/course", function(req,res,next){
 
   console.log("course page");
-  res.render("detailpage");
+  mapservice.makeTestRecommends(function(result){
+    res.render("detailpage", {course: result});
+  })
 });
 
 

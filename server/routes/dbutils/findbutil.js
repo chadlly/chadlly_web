@@ -9,6 +9,7 @@ const Ruins = require("../../model/ruins");
 const Site = require("../../model/site");
 const Valley = require("../../model/valley");
 const User = require("../../model/user");
+const Course = require("../../model/course");
 
 
 
@@ -26,6 +27,7 @@ let roadCollection;
 let ruinsCollection;
 let siteCollection;
 let valleyCollection;
+let courseCollection;
 
 
 function connectdb(){
@@ -49,6 +51,7 @@ function connectdb(){
     ruinsCollection = database.collection("ruins");
     siteCollection = database.collection("site");
     valleyCollection = database.collection("valley");
+    courseCollection = database.collection("course");
     
     console.log("db connected!");
     
@@ -207,6 +210,30 @@ function findValleyByName(queryName, callback){
 
 }
 
+function saveUserData(userid, userpw, usrdate, usrtime, usrtheme, usrpeoplehead, usrtraveltime, usrinterest, wantprice, callback){
+    
+}
+
+function saveCourse(inCourse, callback){
+    /*
+    let newcourse = new Course({
+        name: name,
+        userinfo: userinfo,
+        locations: locations,
+        price: price,
+        theme: theme,
+    })
+    */
+    courseCollection.insertOne(inCourse, function(err, res){
+        if(err) {
+            throw error;
+        }
+        console.log(inCourse);
+        console.log("course data inserted");
+        callback(err,res);
+    })
+}
+
 
 
 
@@ -219,4 +246,5 @@ module.exports.findRoadByName = findRoadByName;
 module.exports.findRuinsByName = findRuinsByName;
 module.exports.findSiteByName = findSiteByName;
 module.exports.findValleyByName = findValleyByName;
+module.exports.saveCourse = saveCourse;
 

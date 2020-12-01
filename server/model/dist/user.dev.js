@@ -4,22 +4,20 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 var userSchema = new Schema({
-  currentPlace: {
-    region: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    latitude: {
-      type: Number,
-      require: false,
-      unique: false
-    },
-    longitude: {
-      type: Number,
-      require: false,
-      unique: false
-    }
+  region: {
+    type: String,
+    required: true,
+    unique: false
+  },
+  latitude: {
+    type: Number,
+    require: false,
+    unique: false
+  },
+  longitude: {
+    type: Number,
+    require: false,
+    unique: false
   },
   date: {
     type: String,
@@ -62,4 +60,4 @@ var userSchema = new Schema({
     unique: false
   }
 });
-module.exports = mongoose.model("Location", locationSchema);
+module.exports = mongoose.model("User", userSchema);

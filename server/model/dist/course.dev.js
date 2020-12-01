@@ -2,32 +2,40 @@
 
 var mongoose = require("mongoose");
 
+var User = require("./user").schema;
+
 var Schema = mongoose.Schema;
-var locationSchema = new Schema({
+var courseSchema = new Schema({
   name: {
     type: String,
     required: true,
     unique: true
   },
-  longitude: {
-    type: Number,
+  userinfo: {
+    type: User,
+    required: true,
+    unique: false,
+    "default": {}
+  },
+  locations: {
+    type: [],
     required: true,
     unique: false
   },
-  latitude: {
-    type: Number,
-    required: true,
+  price: {
+    type: String,
+    required: false,
     unique: false
   },
-  visitType: {
+  theme: {
     type: String,
     required: true,
     unique: false
   },
-  weight: {
+  rating: {
     type: Number,
     required: false,
     unique: false
   }
 });
-module.exports = mongoose.model("Location", locationSchema);
+module.exports = mongoose.model("Course", courseSchema);

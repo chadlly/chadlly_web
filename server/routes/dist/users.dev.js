@@ -1,40 +1,33 @@
-var express = require('express');
-var router = express.Router();
-var path = require('path');
+"use strict";
 
+var express = require('express');
+
+var router = express.Router();
+
+var path = require('path');
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+
+
+router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
-
-router.get('/login', function(req, res, next) {
+router.get('/login', function (req, res, next) {
   res.sendFile(path.join(__dirname + '/userview/login.html'));
 });
-
-router.post('/login', function(req,res,next){
-
+router.post('/login', function (req, res, next) {
   var id = req.body.id;
   var pw = req.body.password;
-
   console.log("id: " + id);
   console.log("pw: " + pw);
-
   res.write('<html>');
   res.write('<body>');
   res.write('<h1>Hello, World!</h1>');
   res.write('</body>');
   res.write('</html>');
   res.end();
-  
-})
-
-router.post("/saved", function(req, res){
+});
+router.post("/saved", function (req, res) {
   console.log("show saved course");
   console.log(req.body.rating);
-
-  
-
-})
-
-
+});
 module.exports = router;

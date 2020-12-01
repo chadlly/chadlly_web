@@ -3,54 +3,70 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>차들이기존코스상세페이지</title>
-  <style>
-h2 {font-size:15px;}
-.star-rating {width:304px;}
-.star-rating,.star-rating span{display:inline-block;height:55px; overflow:hidden; background:url('/images/star.png')no-repeat;}
-.star-rating span{background-position:left bottom; line-height:0;vertical-align:top;}
-</style>
+	<title>완성코스 상세정보</title>
+	<link href="/styles/dist/detailpage.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=070f591babf3005f334087e618dad67b"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=070f591babf3005f334087e618dad67b&libraries=services,clusterer,drawing"></script>
+	<h1>코스 상세 정보</h1>
 </head>
 <body>
 
-	<div id="map" style="width:100%;height:80vh;"></div>
+	<div id= "maincontainer">
+		<div class ="kmapcontaner">
+			<div class="kmap" id="kmap"></div>
+			
+			<script>
+				var mapContainer = document.getElementById('kmap'), // 지도를 표시할 div
+					mapOption = {
+						center: new kakao.maps.LatLng(37.504104, 126.956710), // 지도의 중심좌표
+						level: 4, // 지도의 확대 레벨
+						mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+					};
 
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=070f591babf3005f334087e618dad67b"></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=070f591babf3005f334087e618dad67b&libraries=services,clusterer,drawing"></script>
+				// 지도를 생성한다
+				var map = new kakao.maps.Map(mapContainer, mapOption);
+			</script>
+		</div>
 
-	<script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-		    mapOption = {
-		        center: new kakao.maps.LatLng(37.56691, 126.98017), // 지도의 중심좌표
-		        level: 4, // 지도의 확대 레벨
-		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
-		    };
+		<div class="menucontainer">
+			
+			<ul class="detail">
+				<li>출발주소: <%=course.userinfo.region%></li>
+				<li>장소1: <%=course.locations[0].name%></li>
+				<li>장소2: <%=course.locations[1].name%></li>
+				<li>장소3: <%=course.locations[2].name%></li>
+				<li>코스테마: <%=course.theme%></li>
+				<li>예상 요금: <%=course.price%></li>
+			</ul>
 
-		// 지도를 생성한다
-		var map = new kakao.maps.Map(mapContainer, mapOption);
+				<form>
+				<p>주변주차장 검색:</p>
+				<button id='parkingOn'> 주차장 On </button>
+				<button id="parkingOff"> 주차장 Off</button>
+				</form>
 
-	</script>
-
-<ul class="detail">
-       <li>출발주소:</li>
-       <li>예상거리:</li>
-       <li>예상시간:</li>
-       <li>코스테마:</li>
-       <li>주요장소:</li>
-     </ul>
-
-     <form>
-    <p>주변주차장 검색:</p>
-    <label><input type="radio" name="parking" value="on"> on </label>
-    <label><input type="radio" name="parking" value="off"> off </label>
-     </form>
-
-
-<div class="wrap-star">
-  <h2>별점</h2>
-<span class='star-rating'>
-<span style ="width:50%"></span>
-</span>
-
+					<div class=ratingcontainer>
+						<form method="POST" action="/users/saved">
+							<fieldset class="rating">
+								<input type="radio" id="star5" name="rating" value="5" />
+								<label class = "full" for="star5" title="Awesome - 5 stars"></label>
+								<input type="radio" id="star4" name="rating" value="4" />
+								<label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+								<input type="radio" id="star3" name="rating" value="3" />
+								<label class = "full" for="star3" title="Meh - 3 stars"></label>
+								<input type="radio" id="star2" name="rating" value="2" />
+								<label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+								<input type="radio" id="star1" name="rating" value="1" />
+								<label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+							</fieldset>
+							<input type="submit" value="저장 & 공유하기" name="save">
+						</form>
+					</div>
+					
+			</ul>
+		</div>
+	</div>
+	
 </body>
+
 </html>
