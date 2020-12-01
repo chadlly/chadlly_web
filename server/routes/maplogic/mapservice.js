@@ -42,7 +42,9 @@ function connectdb(){
     
     console.log("db connected!");
     
-    getNearestPlaces(37.504104, 126.956710, 1);
+    getNearestPlaces(37.504104, 126.956710, 1, function(msg, res){
+        console.log(msg);
+    });
 
     });
 }
@@ -99,6 +101,26 @@ function getAllLocation(){
     })
 }
 
+function findCampingBy(mongoQuery){
+    campingCollection.find({mongoQuery}).toArray(function(err, result){
+        if(err){
+            callback("dbOpenError", "none");
+            throw err;
+        }
+        if(result.length > 0){
+            //console.log(result);
+            //callback("", result);
+            console.log(result.length, result);
+        }else{
+            console.log('no entry in db');
+            callback("error", "none");
+        }
+    })
+}
+
+
+
+
 // conversion rules
 //1. 0.1 lat diff => 11 km approx. -> we set to 10
 //2. 0.1 lng diff => 9 km approx. -> we set to 10
@@ -150,17 +172,40 @@ function getNearestPlaces(lat, lng, userPref, callback){
 
 
 
-function recommend(){
+function recommend(usrdate, usrtime, usrtheme, usrpeoplehead, usrtraveltime, usrinterest, wantprice){
     
+
+
 
 }
 
-function applyFilter(usrdate, usrtime, usrtheme, usrpeoplehead, usrtraveltime, usrinterest, wantprice){
+function applyInterestFilter(usrinterest, usrnointerest, callback){
+    // linear search
+    let filteredLocations = [];
+    console.log("travel locations number : ", travelLocations.length);
+    for(let i =0; i < travelLocations.length; i++){
+        
+        if(travelLocations[i].visitType == usrinterest){
+            travelLocations[i].weight = 3;
+            filteredLocations.push(travelLocations[i]);
+        }
+        else if(travelLocations[i].visitType == usrnointerest){
+            travelLocations[i].weight = 0;
+            filteredLocations.push(travelLocations[i]);
+        }
+        else{ // no prefer
+            travelLocations[i].weight = 1;
+            filteredLocations.push(travelLocations[i]);
+        }
+    }
+
+    callback(filteredLocations.length, filteredLocations);
+}
+
+function fetchRecommends(filteredLocations, callback){
 
     
 }
-
-
 
 
 
