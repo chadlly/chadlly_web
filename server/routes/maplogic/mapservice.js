@@ -1,4 +1,13 @@
 const Location = require("../../model/location");
+const Camping = require("../../model/camping");
+const Fishing = require("../../model/fishing");
+const Forest = require("../../model/forest");
+const Museum = require("../../model/museum");
+const Parking = require("../../model/parking");
+const Road = require("../../model/road");
+const Ruins = require("../../model/ruins");
+const Site = require("../../model/site");
+const Valley = require("../../model/valley");
 const User = require("../../model/user");
 
 var MongoClient = require("mongodb").MongoClient;
