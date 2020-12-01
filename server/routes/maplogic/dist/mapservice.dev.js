@@ -211,7 +211,8 @@ function makeTestRecommends(callback) {
     userinfo: testuser,
     locations: testlocations,
     price: testprice,
-    theme: testtheme
+    theme: testtheme,
+    rating: 0
   });
   dbutil.saveCourse(testCourse, function (err, result) {
     callback(testCourse);

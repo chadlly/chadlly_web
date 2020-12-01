@@ -5,6 +5,8 @@ var express = require('express');
 var router = express.Router();
 
 var path = require('path');
+
+var dbutil = require("../routes/dbutils/findbutil");
 /* GET users listing. */
 
 
@@ -29,5 +31,13 @@ router.post('/login', function (req, res, next) {
 router.post("/saved", function (req, res) {
   console.log("show saved course");
   console.log(req.body.rating);
+  console.log(req.body.course);
+  var rating = req.body.rating;
+  var cid = req.body.course;
+  dbutil.updateCourseRating(cid, Number(rating), function (rate) {
+    console.log("updated rating to ", rating);
+    res.send(rating);
+    res.end();
+  });
 });
 module.exports = router;

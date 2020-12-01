@@ -10,7 +10,7 @@ const Site = require("../../model/site");
 const Valley = require("../../model/valley");
 const User = require("../../model/user");
 const Course = require("../../model/course");
-
+const { ObjectId } = require('mongodb');
 
 
 var MongoClient = require("mongodb").MongoClient;
@@ -234,6 +234,13 @@ function saveCourse(inCourse, callback){
     })
 }
 
+function updateCourseRating(courseid, thisrating, callback){
+    courseCollection.findOneAndUpdate({_id: ObjectId(courseid)}, {$set: {rating: thisrating}}, function(err, res){
+        console.log("1 document updated", res);
+        callback(thisrating);
+    })
+}
+
 
 
 
@@ -247,4 +254,5 @@ module.exports.findRuinsByName = findRuinsByName;
 module.exports.findSiteByName = findSiteByName;
 module.exports.findValleyByName = findValleyByName;
 module.exports.saveCourse = saveCourse;
+module.exports.updateCourseRating = updateCourseRating;
 

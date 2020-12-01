@@ -24,6 +24,9 @@ var User = require("../../model/user");
 
 var Course = require("../../model/course");
 
+var _require = require('mongodb'),
+    ObjectId = _require.ObjectId;
+
 var MongoClient = require("mongodb").MongoClient;
 
 var database;
@@ -268,6 +271,19 @@ function saveCourse(inCourse, callback) {
   });
 }
 
+function updateCourseRating(courseid, thisrating, callback) {
+  courseCollection.findOneAndUpdate({
+    _id: ObjectId(courseid)
+  }, {
+    $set: {
+      rating: thisrating
+    }
+  }, function (err, res) {
+    console.log("1 document updated", res);
+    callback(thisrating);
+  });
+}
+
 module.exports.findCampingByName = findCampingByName;
 module.exports.findFishingByName = findFishingByName;
 module.exports.findForestByName = findForestByName;
@@ -278,3 +294,4 @@ module.exports.findRuinsByName = findRuinsByName;
 module.exports.findSiteByName = findSiteByName;
 module.exports.findValleyByName = findValleyByName;
 module.exports.saveCourse = saveCourse;
+module.exports.updateCourseRating = updateCourseRating;
