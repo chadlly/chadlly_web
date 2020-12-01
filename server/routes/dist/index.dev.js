@@ -56,6 +56,10 @@ router.get("/chadlly/filter", function (req, res, next) {
   console.log("search page");
   res.render("filter");
 });
+router.get("/chadlly/", function (req, res, next) {
+  console.log("search page");
+  res.render("filter");
+});
 router.get("/chadlly/course", function (req, res, next) {
   console.log("course page");
   res.render("detailpage");
