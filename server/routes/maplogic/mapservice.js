@@ -10,6 +10,8 @@ const Site = require("../../model/site");
 const Valley = require("../../model/valley");
 const User = require("../../model/user");
 
+const dbutil = require("../dbutils/findbutil");
+
 var MongoClient = require("mongodb").MongoClient;
 // db collections variable
 let database;
@@ -37,17 +39,8 @@ function connectdb(){
     
     console.log('DB:: connect to ' + databaseUrl);
     database = db.db('db');
-    userCollection = database.collection("user");
+    
     categoryCollection = database.collection("category");
-    campingCollection = database.collection("camping");
-    fishingCollection = database.collection("fishing");
-    forestCollection = database.collection("forest");
-    museumCollection = database.collection("museum");
-    parkingCollection = database.collection("parking");
-    roadCollection = database.collection("road");
-    ruinsCollection = database.collection("ruins");
-    siteCollection = database.collection("site");
-    valleyCollection = database.collection("valley");
     
     console.log("db connected!");
     
@@ -110,24 +103,6 @@ function getAllLocation(){
     })
 }
 
-function findCampingBy(mongoQuery){
-    campingCollection.find({mongoQuery}).toArray(function(err, result){
-        if(err){
-            callback("dbOpenError", "none");
-            throw err;
-        }
-        if(result.length > 0){
-            //console.log(result);
-            //callback("", result);
-            console.log(result.length, result);
-        }else{
-            console.log('no entry in db');
-            callback("error", "none");
-        }
-    })
-}
-
-
 
 
 // conversion rules
@@ -135,9 +110,8 @@ function findCampingBy(mongoQuery){
 //2. 0.1 lng diff => 9 km approx. -> we set to 10
 
 
-
 function getDistance(lat1, lng1, lat2, lng2, callback){
-
+    
 
 }
 
