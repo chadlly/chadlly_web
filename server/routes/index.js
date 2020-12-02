@@ -45,9 +45,11 @@ router.post("/chadlly/filterResult", function(req,res,next){
   console.log(select_place);
   console.log(select_fee);
 
-  mapservice.makeFilteredCourse(lat, lng, select_time, select_place, function(length, result){
-    console.log(result);
-    res.render("filter_result", {course: result});
+  mapservice.makeFilteredCourse(lat, lng, select_time, select_place, function(course1,course2,course3){
+    console.log(course1);
+    console.log(course2);
+    console.log(course3);
+    res.render("filter_result", {course1: course1, course2: course2, course3: course3});
   });
 });
 
