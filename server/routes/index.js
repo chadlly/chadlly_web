@@ -3,6 +3,18 @@ var router = express.Router();
 var path = require('path');
 var mapservice = require("./maplogic/mapservice");
 
+const Location = require("../model/location");
+const Camping = require("../model/camping");
+const Fishing = require("../model/fishing");
+const Forest = require("../model/forest");
+const Museum = require("../model/museum");
+const Parking = require("../model/parking");
+const Road = require("../model/road");
+const Ruins = require("../model/ruins");
+const Site = require("../model/site");
+const Valley = require("../model/valley");
+const User = require("../model/user");
+
 
 
 /* GET home page. */
@@ -81,14 +93,15 @@ router.get("/chadlly/recommends", function(req,res,next){
 router.get("/chadlly/customize", function(req,res,next){
   console.log("customize");
 
-  var test = [];
-  test.push("진원이집");
-  test.push("노x현이집");
-  test.push("wogud의짐");
-  test.push("xx의짐");
-  console.log(test);
+  var lat = 37.50446;
+  var lng = 126.95627;
 
-  res.render("customize", {curlat: "36.43453", curlng: "127.24231", l:test});
+  mapservice.getNearestPlacesFiltered(lat, lng, 1, function(length, result){
+    console.log(length);
+    console.log(result);
+    res.render("customize", {curlat: lat, curlng: lng, l:result});
+  })
+  
 });
 
 router.post("/chadlly/customizeDetail", function(req,res,next){
