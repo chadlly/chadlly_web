@@ -61,24 +61,6 @@
     height : 800px;
   }
 
-.star-rating {
-    width:304px;
-}
-.star-rating,.star-rating span{
-    display:inline-block;
-    height:55px;
-    overflow:hidden;
-    background:url('/images/star.png')no-repeat;
-}
-.star-rating span{
-    background-position:left bottom;
-    line-height:0;
-    vertical-align:top;
-}
-
-
-
-
 .kmap {
     content: "";
     display: table; 
@@ -126,7 +108,7 @@ fieldset, label { margin: 0; padding: 0; }
 }
 
 .rating > label {
-  color: #ddd;
+  color: rgb(235, 133, 133);
  float: right;
 }
 
