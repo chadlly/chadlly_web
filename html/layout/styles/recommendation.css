@@ -51,3 +51,21 @@
     border: 1px solid black;
     border-top: none;
 }
+
+.details{
+  margin-top: 0px;
+  width:350px;
+  height:30px;
+  font-size:1.2rem;
+  border: 1px solid black;
+  border-top: none;
+}
+.details>summary{width:350px;}
+.more-result{
+  height: 170px;
+  border: 1px solid black;
+  padding-top: 5px;
+  font-size: 0.8em;
+  line-height: 25px;
+
+}
