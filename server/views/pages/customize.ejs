@@ -64,15 +64,15 @@
                     </div>
                     <div class="result-list-body">
                       <div class="search">
-                        <input type="text" placeholder="목적지검색하기"</div>
-                      <button type="button" name="button">검 </button>
+                        <input type="text" placeholder="목적지검색하기"></div>
+                      <button type="button" name="button">검색 </button>
 
                     </div>
                     <div class="set-button">
-                        <form action="/filterDetail" method="POST">
+                        <form action="/chadlly/filterDetail" method="POST">
                             <input type=hidden name="kind" value="1">
                             <!-- 여기서는 onclick 쓸건데 나중에 node에서 html send 하셈-->
-                            <input type=button class="detail-button" onclick="location.href='filter_detail_page.html'" value="설정">
+                            <input type=submit class="detail-button" value="설정">
                         </form>
                     </div>
                 </div>
@@ -85,9 +85,9 @@
                     </div>
 
                     <div class="set-button">
-                        <form action="/filterDetail" method="POST">
+                        <form action="/chadlly/filterDetail" method="POST">
                             <input type=hidden name="kind" value="2">
-                            <input type=button class="detail-button" onclick="location.href='filter_detail_page.html'" value="설정">
+                            <input type=submit class="detail-button" value="설정">
                         </form>
                     </div>
                 </div>
@@ -101,9 +101,9 @@
                     </div>
 
                     <div class="set-button">
-                        <form action="/filterDetail" method="POST">
+                        <form action="/chadlly/filterDetail" method="POST">
                             <input type=hidden name="kind" value="3">
-                            <input type=button class="detail-button" onclick="location.href='filter_detail_page.html'" value="설정">
+                            <input type=submit class="detail-button" value="설정">
                         </form>
 
                     </div>
