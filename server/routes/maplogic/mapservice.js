@@ -1,7 +1,6 @@
 const dbutil = require("../dbutils/findbutil");
 
-let lat = 37.50;
-let lng = 126.95;
+
 
 function getNearestPlaces(lat, lng, userPref, callback){
     // lat, lng, userpref(1~3), 30km, 60km, 90km
@@ -44,19 +43,55 @@ function makeFilteredCourse(lat, lng, time, category, callback) {
             for(k=0; k<7; k++) {
                 if(result[k][0].category == category) {
                     x=k;
+                    y=getRandomInt(0,3);
                     random.push([x,0]);
                     random1.push([x,1]);
                     random2.push([x,2]);
-                    
-                    x=getRandomInt(0,7);
-                    random.push([x,1]);
-                    random1.push([x,2]);
-                    random2.push([x,0]);
-
-                    x=getRandomInt(0,7);
-                    random.push([x,2]);
-                    random1.push([x,0]);
-                    random2.push([x,1]);
+                    for(i=0;i<2;i++) {
+                        var check=1;
+                        
+                        while(check == 1) {
+                            check = 0;
+                            x = getRandomInt(0, 7);
+                            y = getRandomInt(0, 3);
+                            for(j=0; j<=i; j++) {
+                                if(random[j] == [x,y]) {
+                                    check = 1;
+                                }
+                            }
+                        }
+                        random.push([x,y]);
+                    }
+                    for(i=0;i<2;i++) {
+                        var check=1;
+                        
+                        while(check == 1) {
+                            check = 0;
+                            x = getRandomInt(0, 7);
+                            y = getRandomInt(0, 3);
+                            for(j=0; j<=i; j++) {
+                                if(random1[j] == [x,y]) {
+                                    check = 1;
+                                }
+                            }
+                        }
+                        random1.push([x,y]);
+                    }
+                    for(i=0;i<2;i++) {
+                        var check=1;
+                        
+                        while(check == 1) {
+                            check = 0;
+                            x = getRandomInt(0, 7);
+                            y = getRandomInt(0, 3);
+                            for(j=0; j<=i; j++) {
+                                if(random2[j] == [x,y]) {
+                                    check = 1;
+                                }
+                            }
+                        }
+                        random2.push([x,y]);   
+                    }
                     break;
                     
                 }
@@ -68,9 +103,6 @@ function makeFilteredCourse(lat, lng, time, category, callback) {
                 course3.push(result[random2[i][0]][random2[i][1]]);
             }
             callback(course1, course2, course3);
-            // console.log(random);
-            // console.log(random1);
-            // console.log(random2);
             // console.log(course1);
             // console.log(course2);
             // console.log(course3);

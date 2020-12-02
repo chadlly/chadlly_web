@@ -40,10 +40,13 @@ router.get("/chadlly/filter", function(req,res,next){
   res.render("filter");
 });
 
+var mainplace;
+var start_city = "heuksuk";
+
 router.post("/chadlly/filterResult", function(req,res,next){
   
-  var lat = 36.5435;
-  var lng = 127.21521;
+  var lat = 37.504332;
+  var lng = 126.95691;
   var select_city = req.body.city;
   var select_date = req.body.date;
   var select_timezone = req.body.timezone;
@@ -52,6 +55,8 @@ router.post("/chadlly/filterResult", function(req,res,next){
   var select_time = req.body.time;
   var select_place = req.body.place;
   var select_fee = req.body.fee;
+  mainplace = select_place;
+  start_city = select_city;
 
   console.log(select_city);
   console.log(select_date);
@@ -75,14 +80,124 @@ router.post("/chadlly/filterDetail", function(req,res,next){
   res.render("filter_detail_page");
 });
 
+router.post("/chadlly/filterDetail1", function(req,res,next){
+
+  var filterlats = [];
+  var filterlngs = [];
+  var filternames = [];
+
+  
+
+  filterlats.push(req.body.c1lat0);
+  filterlats.push(req.body.c1lat1);
+  filterlats.push(req.body.c1lat2);
+ 
+
+  filterlngs.push(req.body.c1lng0);
+  filterlngs.push(req.body.c1lng1);
+  filterlngs.push(req.body.c1lng2);
+  
+  filternames.push(req.body.name0);
+  filternames.push(req.body.name1);
+  filternames.push(req.body.name2);
+
+  console.log(filternames);
+
+  res.render("filter_detail_page", {startt: start_city, lats:filterlats, lngs: filterlngs, names: filternames, mainplace: mainplace});
+});
+
+router.post("/chadlly/filterDetail2", function(req,res,next){
+
+  var filterlats = [];
+  var filterlngs = [];
+  var filternames = [];
+
+  
+  filterlats.push(req.body.c2lat0);
+  filterlats.push(req.body.c2lat1);
+  filterlats.push(req.body.c2lat2);
+ 
+
+  filterlngs.push(req.body.c2lng0);
+  filterlngs.push(req.body.c2lng1);
+  filterlngs.push(req.body.c2lng2);
+  
+  filternames.push(req.body.name0);
+  filternames.push(req.body.name1);
+  filternames.push(req.body.name2);
+
+  console.log(filternames);
+
+  res.render("filter_detail_page", {startt: start_city, lats:filterlats, lngs: filterlngs, names: filternames, mainplace: mainplace});
+});
+
+router.post("/chadlly/filterDetail3", function(req,res,next){
+  var filterlats = [];
+  var filterlngs = [];
+  var filternames = [];
+
+  
+
+  filterlats.push(req.body.c3lat0);
+  filterlats.push(req.body.c3lat1);
+  filterlats.push(req.body.c3lat2);
+ 
+
+  filterlngs.push(req.body.c3lng0);
+  filterlngs.push(req.body.c3lng1);
+  filterlngs.push(req.body.c3lng2);
+  
+  filternames.push(req.body.name0);
+  filternames.push(req.body.name1);
+  filternames.push(req.body.name2);
+
+  console.log(filternames);
+
+  res.render("filter_detail_page", {startt: start_city, lats:filterlats, lngs: filterlngs, names: filternames, mainplace: mainplace});
+});
+
 router.post("/chadlly/finalfilterDetail", function(req,res,next){
 
   res.render("filter_detail_page");
 });
 
+
+
+
+router.post("/chadlly/finalfilterDetail", function(req,res,next){
+
+  res.render("filter_detail_page");
+});
+
+
+
+
+
+
+
+
+
+
 router.get("/chadlly/recommends", function(req,res,next){
 
-  res.render("recommendation");
+  var lat = 37.504332;
+  var lng = 126.95691;
+  var select_city = "서울시 흑석동";
+  var select_time = 4;
+  var select_place = "관광지";
+  mainplace = select_place;
+  start_city = select_city;
+
+  console.log(select_city);
+
+  mapservice.makeFilteredCourse(lat, lng, select_time, select_place, function(course1,course2,course3){
+    console.log(course1);
+    console.log(course2);
+    console.log(course3);
+    res.render("filter_result", {course1: course1, course2: course2, course3: course3});
+  });
+
+
 });
 
 var firstlat;
