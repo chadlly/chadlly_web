@@ -82,6 +82,15 @@ router.post("/chadlly/filter_result", function(req,res,next){
 
   res.render("filter_result");
 });
+router.get("/chadlly/filter_result", function(req,res,next){
+
+  res.render("filter_result");
+});
+
+router.post("/chadlly/filterDetail", function(req,res,next){
+
+  res.render("filter_detail_page");
+});
 
 router.get("/chadlly/recommends", function(req,res,next){
 
