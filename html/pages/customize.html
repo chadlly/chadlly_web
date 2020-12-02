@@ -104,10 +104,19 @@
                     <div class="set-button">
                         <form action="/filterDetail" method="POST">
                             <input type=hidden name="kind" value="3">
-                            <input type=button class="set-button"  value="설정">
+                            <input type=button class="set-button" onclick="location.href='customize_detail.html'" value="설정">
                         </form>
 
                     </div>
+                    <script type="text/javascript">
+                    $(".star").on('click',function(){
+var idx = $(this).index();
+$(".star").removeClass("on");
+for(var i=0; i<=idx; i++){
+  $(".star").eq(i).addClass("on");
+}
+});
+                    </script>
                 </div>
             </div>
         </div>
