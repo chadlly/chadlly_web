@@ -34,23 +34,15 @@
             <div class="contents">
                 <div class="question">
                     <div class="query">어디서 출발 할까요?</div>
-                    <select class="select-answer" id="start">
-                        <option value="SeoulNW">서울 서북부</option>
-                        <option value="SeoulNE">서울 동북부</option>
-                        <option value="SeoulSW">서울 서남부</option>
-                        <option value="SeoulSE">서울 동남부</option>
-                        <option value="Incheon">인천</option>
-                        <option value="Suwon">수원</option>
-                    </select>
+                    <input type="text" class="select-answer" placeholder="서울시" id="city" name="city">
                 </div>
                 <div class="question">
                     <div class="query">날짜를 정해주세요.</div>
-                    <input type=date class="select-answer" id="date">
+                    <input type=date class="select-answer" id="date" name="date">
                 </div>
                 <div class="question">
                     <div class="query">시간대를 정해주세요.</div>
-                    <select class="select-answer" id="timezone">
-                        <option value="dawn">새벽</option>
+                    <select class="select-answer" id="timezone" name="timezone">
                         <option value="morning">아침</option>
                         <option value="afternoon">점심</option>
                         <option value="evening">저녁</option>
@@ -59,7 +51,7 @@
                 </div>
                 <div class="question">
                     <div class="query">테마를 정해주세요.</div>
-                    <select class="select-answer" id="thema">
+                    <select class="select-answer" id="thema" name="thema">
                         <option value="couple">커플끼리</option>
                         <option value="fun">신나는</option>
                         <option value="activity">활동적인</option>
@@ -68,7 +60,7 @@
                 </div>
                 <div class="question">
                     <div class="query">동반인원 정해주세요.</div>
-                    <select class="select-answer"  id="headcount">
+                    <select class="select-answer" id="headcount" name="headcount">
                         <option value="1">1인</option>
                         <option value="2">2인</option>
                         <option value="3">3인</option>
@@ -77,7 +69,7 @@
                 </div>
                 <div class="question">
                     <div class="query">소요 시간을 정해주세요.</div>
-                    <select class="select-answer"  id="time">
+                    <select class="select-answer"  id="time" name="time">
                         <option value="1">1시간 미만</option>
                         <option value="2">1시간 ~ 2시간</option>
                         <option value="3">2시간 ~ 3시간</option>
@@ -86,7 +78,7 @@
                 </div>
                 <div class="question">
                     <div class="query">여기는 꼭 가고 싶어요.</div>
-                    <select class="select-answer"  id="place">
+                    <select class="select-answer"  id="place" name="place">
                         <option value="museum">박물관</option>
                         <option value="festival">축제</option>
                         <option value="site">문화/유적</option>
@@ -95,7 +87,7 @@
                 </div>
                 <div class="question">
                     <div class="query">예상 비용을 정해주세요.</div>
-                    <select class="select-answer"  id="fee">
+                    <select class="select-answer"  id="fee" name="fee">
                         <option value="free">무료</option>
                         <option value="1">1만원 이하</option>
                         <option value="3">3만원 이하</option>

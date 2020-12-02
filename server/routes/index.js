@@ -80,6 +80,25 @@ router.get("/chadlly/course", function(req,res,next){
 
 router.post("/chadlly/filter_result", function(req,res,next){
 
+  var select_city = req.body.city;
+  var select_date = req.body.date;
+  var select_timezone = req.body.timezone;
+  var select_thema = req.body.thema;
+  var select_headcount = req.body.headcount;
+  var select_time = req.body.time;
+  var select_place = req.body.place;
+  var select_fee = req.body.fee;
+
+  console.log(select_city);
+  console.log(select_date);
+  console.log(select_timezone);
+  console.log(select_thema);
+  console.log(select_headcount);
+  console.log(select_time);
+  console.log(select_place);
+  console.log(select_fee);
+
+
   res.render("filter_result");
 });
 router.get("/chadlly/filter_result", function(req,res,next){
