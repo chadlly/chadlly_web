@@ -26,7 +26,7 @@
     margin-left: 55px;
     padding: 5px;
     width: 510px;
-    height: 180px;
+    line-height: 35px;
     border: 1px solid black;
 }
 
@@ -36,107 +36,90 @@
     padding-bottom: 10px;
 }
 
-.rating{
-    font-size: 20px;
-}
-
-.star-rating{
-    margin: 10px auto;
-    width: 400px;
-    height: 100px;
-    border: 1px solid black;
-}
-
-.save-button{
-    margin-top:50px;
-    margin: 5px auto;
-    width:500px;
-    height:25px;
-    font-size:1rem;
-}
-
-
-.maincontainer{
-    width : calc(100% - 250px);
-    height : 800px;
-  }
-
-.star-rating {
-    width:304px;
-}
-.star-rating,.star-rating span{
-    display:inline-block;
-    height:55px;
-    overflow:hidden;
-    background:url('/images/star.png')no-repeat;
-}
-.star-rating span{
-    background-position:left bottom;
-    line-height:0;
-    vertical-align:top;
-}
-
-
-
-
-.kmap {
-    content: "";
-    display: table;
-    clear: both;
-    width:100%;
-    height: 600px;
-}
-
-
-.star-rating {
-    width: 200px;
-}
-
-@media (max-width:400px){
-    .kmap{
-      width : 100%;
-      height : 400px;
-    }
-}
-
-
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-
-fieldset, label { margin: 0; padding: 0; }
-
-/****** Style Star Rating Widget *****/
-
-.rating {
-  border: none;
-  float: left;
-}
-
-.rating > input { display: none; }
-.rating > label:before {
-  margin: 5px;
-  font-size: 1.25em;
-  font-family: FontAwesome;
-  display: inline-block;
-  content: "\f005";
-}
-
-.rating > .half:before {
-  content: "\f089";
+.blind {
   position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  border: none;
+  clip: rect(0, 0, 0, 0);
 }
 
-.rating > label {
-  color: #ddd;
- float: right;
+/*여기서부터 별점*/
+.title_star{
+  margin-bottom: 10px;
+}
+.rating .rate_radio + label {
+    position: relative;
+    display: inline-block;
+    margin-left: -4px;
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    background-image: url('./images/starrate.png');
+    background-repeat: no-repeat;
+    background-size: 60px 60px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+.rating .rate_radio:checked + label {
+    background-color: #ff8;
 }
 
-/***** CSS Magic to Highlight Stars on Hover *****/
+.wrap{
+    max-width: 480px;
+    /* margin: 0 auto; /* 화면 가운데로 */ */
+    background-color: #fff;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 
-.rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+}
+.reviewform>textarea{
+    width: 100px;
+    height: 30px;
+    padding: 10px;
+}
+.rating .rate_radio {
+    position: relative;
+    display: inline-block;
+    z-index: 20;
+    opacity: 0.001;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    cursor: pointer;
+    vertical-align: top;
+    display: none;
+}
+.rating .rate_radio + label {
+    position: relative;
+    display: inline-block;
+    margin-left: -4px;
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    background-image: url("images/starrate.png");
+    background-repeat: no-repeat;
+    background-size: 60px 60px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+.rating .rate_radio:checked + label {
+    background-color: #ff8;
+}
 
-.rating > input:checked + label:hover, /* hover current star when changing rating */
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+.warning_msg {
+    display: none;
+    position: relative;
+    text-align: center;
+    background: #ffffff;
+    line-height: 26px;
+    width: 100%;
+    color: red;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #e0e0e0;
+}
