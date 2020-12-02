@@ -4,49 +4,67 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
 
-    currentPlace: {
-
-        region : {
-            type: String,
-            required: true,
-            unique: true,
-        },
-
-        latitude: {
-            type: Number,
-            require: false,
-            unique: false,
-        },
-
-        longitude: {
-            type: Number,
-            require: false,
-            unique: false,
-        },
-    },
-
-    date: {
+    region : {
         type: String,
-        require: false,
-        unique: false,
-    },
-
-
-    longitude: {
-        type: Number,
         required: true,
         unique: false,
     },
     latitude: {
         type: Number,
-        required: true,
+        require: false,
         unique: false,
     },
-    visitType: {
+    longitude: {
+        type: Number,
+        require: false,
+        unique: false,
+    },
+    date: {
+        type: String,
+        require: false,
+        unique: false,
+    },
+    time: {
+        type: String,
+        require: true,
+        unique: false,
+    },
+    
+    theme: {
+        type: String,
+        require: true,
+        unique: false,
+    },
+
+    peoplehead: {
+        type: Number,
+        require: true,
+        unique: false,
+    },
+
+    traveltime: {
         type: String,
         required: true,
         unique: false,
     },
+
+    interest: {
+        type: String,
+        required: true,
+        unique: false,
+    },
+    nointerest: {
+        type: String,
+        required: true,
+        unique: false,
+    },
+
+    wantprice: {
+        type: String,
+        required: true,
+        unique: false,
+    },
+
 })
 
-module.exports = mongoose.model("Location", locationSchema);
+module.exports = mongoose.model("User", userSchema);

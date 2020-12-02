@@ -77,6 +77,4 @@ router.post("/chadlly/customizeDetail", function(req,res,next){
 });
 
 
-
-
 module.exports = router;
