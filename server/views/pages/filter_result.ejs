@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <title>필터 결과</title>
-        <link href="../layout/styles/index.css" rel="stylesheet" type="text/css">
-        <link href="../layout/styles/filter_result.css" rel="stylesheet" type="text/css">
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <title>필터 결과</title>
+    <link href="../layout/styles/index.css" rel="stylesheet" type="text/css">
+    <link href="../layout/styles/filter_result.css" rel="stylesheet" type="text/css">
+</head>
+
 <body>
     <div id="container">
         <div class="nav">
@@ -27,17 +29,45 @@
                 </div>
             </div>
         </div>
+
+
         <div class="contents">
-            <div class="kakaomap">
-                카카오맵
-            </div>
+            <div id="map" style="width:800px;"></div>
+
+            <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=070f591babf3005f334087e618dad67b"></script>
+
+            <script>
+                var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                    mapOption = {
+                        center: new kakao.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
+                        level: 3, // 지도의 확대 레벨
+                        mapTypeId: kakao.maps.MapTypeId.ROADMAP // 지도종류
+                    };
+
+                // 지도를 생성한다
+                var map = new kakao.maps.Map(mapContainer, mapOption);
+
+            </script>
+
+            
+
             <div class="result-lists">
                 <div class="result-list">
                     <div class="result-list-head">
-                       <span style="color:red">코스 1</span>
+                        <span style="color:red">코스 1</span>
                     </div>
                     <div class="result-list-body">
-                        코스 1 설명(출발점, 코스, 소요시간, 비용)
+                        <p1>목적저 1: <%= course[0].name %></p1><br>
+                        <!-- <p2><%= course[0].address %></p2><br> -->
+
+
+                        <p1>목적저 2: <%= course[1].name %></p1><br>
+                        <!-- <p2><%= course[1].address %></p2><br> -->
+
+
+                        <p1>목적저 3: <%= course[2].name %></p1><br>
+                        <!-- <p2><%= course[2].address %></p2><br> -->
+                        
                     </div>
                     <div class="result-list-button">
                         <form action="/chadlly/filterDetail1" method="POST">
@@ -84,5 +114,5 @@
         </div>
     </div>
 </body>
-</html>
 
+</html>

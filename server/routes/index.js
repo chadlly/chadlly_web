@@ -23,8 +23,10 @@ router.get("/chadlly/filter", function(req,res,next){
   res.render("filter");
 });
 
-router.post("/chadlly/filter_result", function(req,res,next){
-
+router.post("/chadlly/filterResult", function(req,res,next){
+  
+  var lat = 36.5435;
+  var lng = 127.21521;
   var select_city = req.body.city;
   var select_date = req.body.date;
   var select_timezone = req.body.timezone;
@@ -43,7 +45,10 @@ router.post("/chadlly/filter_result", function(req,res,next){
   console.log(select_place);
   console.log(select_fee);
 
-  res.render("filter_result");
+  mapservice.makeFilteredCourse(lat, lng, select_time, select_place, function(length, result){
+    console.log(result);
+    res.render("filter_result", {course: result});
+  });
 });
 
 router.post("/chadlly/filterDetail1", function(req,res,next){

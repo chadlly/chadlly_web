@@ -36,7 +36,7 @@ function makeFilteredCourse(lat, lng, time, category, callback) {
     var j = getRandomInt(0, 3);
     var k, l;
     dbutil.connectdb(function(){
-        getNearestPlaces(lat,lng, time/3, function(length, result){
+        getNearestPlaces(lat,lng, time, function(length, result){
             
             for(k=0; k<7; k++) {
                 if(result[k][0].category == category) {
@@ -53,8 +53,8 @@ function makeFilteredCourse(lat, lng, time, category, callback) {
                     
                 }
             }
-            console.log(course);
-            
+            //console.log(course);
+            callback(course.length, course);
             
         });
     })
@@ -63,9 +63,9 @@ function makeFilteredCourse(lat, lng, time, category, callback) {
 
 }
 
-makeFilteredCourse(lat, lng, 3, "야영장", function(length, result){
+//makeFilteredCourse(lat, lng, select_time, select_place, function(length, result){
     
-});
+//});
 
 // getNearestPlacesFiltered(lat, lng, 3, function(length, result){
 //     console.log(result[0].category);
@@ -77,6 +77,7 @@ makeFilteredCourse(lat, lng, 3, "야영장", function(length, result){
 //     }
 // });
 module.exports.getNearestPlacesFiltered = getNearestPlacesFiltered;
+module.exports.makeFilteredCourse = makeFilteredCourse;
 
 
 
