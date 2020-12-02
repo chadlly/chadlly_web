@@ -67,10 +67,10 @@ router.get("/chadlly/filter", function(req,res,next){
   res.render("filter");
 });
 
-router.get("/chadlly/", function(req,res,next){
+router.get("/chadlly", function(req,res,next){
 
   console.log("search page");
-  res.render("filter");
+  res.render("index");
 });
 
 
@@ -81,6 +81,12 @@ router.get("/chadlly/course", function(req,res,next){
   res.render("detailpage");
 });
 
+
+router.post("/chadlly/filter_result", function(req,res,next){
+
+  console.log("course page");
+  res.render("detailpage");
+});
 
 
 

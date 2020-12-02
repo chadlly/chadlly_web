@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>차들이</title>
+    <link href="layout/styles/index.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="container">
+        <div class="nav">
+            <div class="nav-left-items">
+                <img src="/images/logo.png" width="300px" height="50px">
+            </div>
+            <div class="nav-right-items">
+                
+                    <!-- <button id="gohome">홈으로</button> -->
+                    <form action="/chadlly" method="get">
+                        <input type='submit' class='btn' name='btn' value='홈으로'
+                        width="200px">
+                    </form>
+                    <!-- <button id="goplan">코스 계획하기</button> -->
+                    <form action="/chadlly/create" method="get">
+                        <input type='submit' class='btn' name='btn' value='코스 계획하기'>
+                    </form>
+
+                    <form action="/chadlly/filter" method="get">
+                        <input type='submit' class='btn' name='btn' value='코스 필터하기'>
+                    </form>
+
+                    <!-- <button id="index">추천 코스보기</button> -->
+                    <form action="/chadlly/recommend" method="get">
+                        <input type='submit' class='btn' name='btn' value='추천 코스보기''>
+                    </form>
+             </div>
+            
+        </div>
+        <div class="index-main">
+            <div id="chadlly-image">
+                <img src="/images/main-chadlly.png" width="1000px" height="500px">
+            </div>
+            <div id="main-content">
+                <img src="/images/main-content.png" width="1200px" height="150px">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
