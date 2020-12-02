@@ -66,6 +66,11 @@ router.post("/chadlly/filterDetail3", function(req,res,next){
   res.render("filter_detail_page");
 });
 
+router.post("/chadlly/finalfilterDetail", function(req,res,next){
+
+  res.render("filter_detail_page");
+});
+
 router.get("/chadlly/recommends", function(req,res,next){
 
   res.render("recommendation");
