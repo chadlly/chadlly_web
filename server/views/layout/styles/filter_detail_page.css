@@ -1,0 +1,55 @@
+#map{
+    margin: 10px auto;
+    width: 1100px;
+    height: 500px;
+    border: 1px solid black;
+}
+
+.contents{
+    display:flex;
+}
+
+.content-descriptions{
+    margin-left: 50px;
+    padding: 5px;
+    width: 510px;
+    line-height: 35px;
+    border: 1px solid black;
+}
+
+.content-description{
+    border-bottom: 1px groove grey;
+    font-size: 0.8em;
+}
+
+.sub-contents{
+    margin-left: 55px;
+    padding: 5px;
+    width: 510px;
+    height: 180px;
+    border: 1px solid black;
+}
+
+.parking{
+    border-bottom: 1px groove grey;
+    font-size: 0.8em;
+    padding-bottom: 10px;
+}
+
+.rating{
+    font-size: 20px;
+}
+
+.star-rating{
+    margin: 10px auto;
+    width: 400px;
+    height: 100px;
+    border: 1px solid black;
+}
+
+.back-button{
+    margin: 5px auto;
+    width:500px;
+    height:25px;
+    font-size:1rem;
+}
