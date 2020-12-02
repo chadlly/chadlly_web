@@ -71,115 +71,125 @@ function findCategoryByRange({ lat, latdiff, lng, lngdiff }, callback) {
             total.push(result);
         } else {
             console.log('no entry in db');
-            callback("error", "none");
+            //callback("error", "none");
         }
-    });
-
-    s2 = fishingCollection.find({
-        latitude: { $gt: lat - latdiff, $lt: lat + latdiff },
-        longitude: { $gt: lng - lngdiff, $lt: lng + lngdiff }
-    }).toArray(function (err, result) {
-        if (err) {
-            callback("dbOpenError", "none");
-            throw err;
-        }
-        if (result.length > 0) {
-            total.push(result);
-        } else {
-            console.log('no entry in db');
-            callback("error", "none");
-        }
-    });
-
-
-    s3 = forestCollection.find({
-        latitude: { $gt: lat - latdiff, $lt: lat + latdiff },
-        longitude: { $gt: lng - lngdiff, $lt: lng + lngdiff }
-    }).toArray(function (err, result) {
-        if (err) {
-            callback("dbOpenError", "none");
-            throw err;
-        }
-        if (result.length > 0) {
-            total.push(result);
-        } else {
-            console.log('no entry in db');
-            callback("error", "none");
-        }
-    });
-
-
-    s4 = museumCollection.find({
-        latitude: { $gt: lat - latdiff, $lt: lat + latdiff },
-        longitude: { $gt: lng - lngdiff, $lt: lng + lngdiff }
-    }).toArray(function (err, result) {
-        if (err) {
-            callback("dbOpenError", "none");
-            throw err;
-        }
-        if (result.length > 0) {
-            total2.push(result);
+        
+        s2 = fishingCollection.find({
+            latitude: { $gt: lat - latdiff, $lt: lat + latdiff },
+            longitude: { $gt: lng - lngdiff, $lt: lng + lngdiff }
+        }).toArray(function (err, result) {
+            if (err) {
+                callback("dbOpenError", "none");
+                throw err;
+            }
+            if (result.length > 0) {
+                total.push(result);
+            } else {
+                console.log('no entry in db');
+                //callback("error", "none");
+            }
             
-            //console.log(result);
-        } else {
-            console.log('no entry in db');
-            callback("error", "none");
-        }
+            s3 = forestCollection.find({
+                latitude: { $gt: lat - latdiff, $lt: lat + latdiff },
+                longitude: { $gt: lng - lngdiff, $lt: lng + lngdiff }
+            }).toArray(function (err, result) {
+                if (err) {
+                    callback("dbOpenError", "none");
+                    throw err;
+                }
+                if (result.length > 0) {
+                    total.push(result);
+                } else {
+                    console.log('no entry in db');
+                    //callback("error", "none");
+                }
+                
+                s4 = museumCollection.find({
+                    latitude: { $gt: lat - latdiff, $lt: lat + latdiff },
+                    longitude: { $gt: lng - lngdiff, $lt: lng + lngdiff }
+                }).toArray(function (err, result) {
+                    if (err) {
+                        callback("dbOpenError", "none");
+                        throw err;
+                    }
+                    if (result.length > 0) {
+                        total.push(result);
+                        
+                        //console.log(result);
+                    } else {
+                        console.log('no entry in db');
+                        //callback("error", "none");
+                    }
+                    //console.log(total[]);
+                    s5 = roadCollection.find({
+                        latitude: { $gt: lat - latdiff, $lt: lat + latdiff },
+                        longitude: { $gt: lng - lngdiff, $lt: lng + lngdiff }
+                    }).toArray(function (err, result) {
+                        if (err) {
+                            callback("dbOpenError", "none");
+                            throw err;
+                        }
+                        if (result.length > 0) {
+                            total.push(result);
+                        } else {
+                            console.log('no entry in db');
+                            //callback("error", "none");
+                        }
+                        s6 = ruinsCollection.find({
+                            latitude: { $gt: lat - latdiff, $lt: lat + latdiff },
+                            longitude: { $gt: lng - lngdiff, $lt: lng + lngdiff }
+                        }).toArray(function (err, result) {
+                            if (err) {
+                                callback("dbOpenError", "none");
+                                throw err;
+                            }
+                            if (result.length > 0) {
+                                total.push(result);
+                            } else {
+                                console.log('no entry in db');
+                                //callback("error", "none");
+                            }
+                            s7 = siteCollection.find({
+                                latitude: { $gt: lat - latdiff, $lt: lat + latdiff },
+                                longitude: { $gt: lng - lngdiff, $lt: lng + lngdiff }
+                            }).toArray(function (err, result) {
+                                if (err) {
+                                    callback("dbOpenError", "none");
+                                    throw err;
+                                }
+                                if (result.length > 0) {
+                                    total.push(result);
+                                    //console.log(total);
+                        //            console.log(total2);
+                                    callback(total.length, total);
+                                } else {
+                                    console.log('no entry in db');
+                                    //callback("error", "none");
+                                }
+                            });
+                        });
+                    });
+                });
+            
+            });
+        });
     });
 
-
-    s5 = roadCollection.find({
-        latitude: { $gt: lat - latdiff, $lt: lat + latdiff },
-        longitude: { $gt: lng - lngdiff, $lt: lng + lngdiff }
-    }).toArray(function (err, result) {
-        if (err) {
-            callback("dbOpenError", "none");
-            throw err;
-        }
-        if (result.length > 0) {
-            total.push(result);
-        } else {
-            console.log('no entry in db');
-            callback("error", "none");
-        }
-    });
+    
 
 
-    s6 = ruinsCollection.find({
-        latitude: { $gt: lat - latdiff, $lt: lat + latdiff },
-        longitude: { $gt: lng - lngdiff, $lt: lng + lngdiff }
-    }).toArray(function (err, result) {
-        if (err) {
-            callback("dbOpenError", "none");
-            throw err;
-        }
-        if (result.length > 0) {
-            total.push(result);
-        } else {
-            console.log('no entry in db');
-            callback("error", "none");
-        }
-    });
+    
 
 
-    s7 = siteCollection.find({
-        latitude: { $gt: lat - latdiff, $lt: lat + latdiff },
-        longitude: { $gt: lng - lngdiff, $lt: lng + lngdiff }
-    }).toArray(function (err, result) {
-        if (err) {
-            callback("dbOpenError", "none");
-            throw err;
-        }
-        if (result.length > 0) {
-            total.push(result);
-            console.log(total);
-//            console.log(total2);
-            callback(total.length, total2.length, total, total2);
-        } else {
-            console.log('no entry in db');
-            callback("error", "none");
-        }
-    });
+    
+
+    
+
+
+    
+
+
+    
 }
 
 function bestCategory(array, callback) {
@@ -187,7 +197,7 @@ function bestCategory(array, callback) {
     var i, j;
     for(i = 0; i<7; i++) {
         for(j=0;j<1;j++) {
-            //console.log(array[i][j]);
+            
             best.push(array[i][j]);
         }
     }
