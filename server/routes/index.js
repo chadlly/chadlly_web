@@ -72,8 +72,16 @@ router.get("/chadlly/recommends", function(req,res,next){
 });
 
 router.get("/chadlly/customize", function(req,res,next){
+  console.log("customize");
 
-  res.render("customize");
+  var test = [];
+  test.push("진원이집");
+  test.push("노x현이집");
+  test.push("wogud의짐");
+  test.push("xx의짐");
+  console.log(test);
+
+  res.render("customize", {curlat: "36.43453", curlng: "127.24231", l:test});
 });
 
 router.post("/chadlly/customizeDetail", function(req,res,next){
