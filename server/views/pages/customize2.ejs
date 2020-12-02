@@ -163,9 +163,6 @@
 
 
 
-
-
-
 <script>
 
     var curlat = Number(document.getElementById("curlat").value);
@@ -267,8 +264,8 @@
 
     for (var i = 0, len = dbpositions.length; i < len; i++) {
         var gapX = (MARKER_WIDTH+SPRITE_GAP), // 스프라이트 이미지에서 마커로 사용할 이미지 X좌표 간격 값
-            originY = (MARKER_HEIGHT + SPRITE_GAP)*0, // 스프라이트 이미지에서 기본, 클릭 마커로 사용할 Y좌표 값
-            overOriginY = (OVER_MARKER_HEIGHT + SPRITE_GAP) * i, // 스프라이트 이미지에서 오버 마커로 사용할 Y좌표 값
+            originY = (MARKER_HEIGHT + SPRITE_GAP)*2, // 스프라이트 이미지에서 기본, 클릭 마커로 사용할 Y좌표 값
+            overOriginY = (OVER_MARKER_HEIGHT + SPRITE_GAP) * 2, // 스프라이트 이미지에서 오버 마커로 사용할 Y좌표 값
             normalOrigin = new kakao.maps.Point(0, originY), // 스프라이트 이미지에서 기본 마커로 사용할 영역의 좌상단 좌표
             clickOrigin = new kakao.maps.Point(gapX, originY), // 스프라이트 이미지에서 마우스오버 마커로 사용할 영역의 좌상단 좌표
             overOrigin = new kakao.maps.Point(gapX * 2, overOriginY); // 스프라이트 이미지에서 클릭 마커로 사용할 영역의 좌상단 좌표
@@ -314,7 +311,6 @@
 marker.setImage(clickImage);
 }
 
-
 // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
 selectedMarker = marker;
 console.log(selectedMarker.getPosition().getLat());
@@ -334,11 +330,10 @@ console.log(selectedMarker.getPosition().getLat());
                 }
             }
 
-document.getElementById("d1").innerHTML = "장소 이름: "+ infowindow.getContent();
+document.getElementById("d3").innerHTML = "장소 이름: "+ infowindow.getContent();
 document.getElementById("nextlat").value=selectedMarker.getPosition().getLat();
 document.getElementById("nextlng").value=selectedMarker.getPosition().getLng();
-document.getElementById("content1").value=infowindow.getContent();
-            
+document.getElementById("content3").value=infowindow.getContent();
         });
         //marker.setMap(map);
     }
@@ -346,7 +341,7 @@ document.getElementById("content1").value=infowindow.getContent();
     function createMarkerImage(markerSize, offset, spriteOrigin) {
         var markerImage = new kakao.maps.MarkerImage(
             SPRITE_MARKER_URL, // 스프라이트 마커 이미지 URL
-            markerSize, // 마커의 크기res.locals.error
+            markerSize, // 마커의 크기
             {
                 offset: offset, // 마커 이미지에서의 기준 좌표
                 spriteOrigin: spriteOrigin, // 스트라이프 이미지 중 사용할 영역의 좌상단 좌표
@@ -355,8 +350,6 @@ document.getElementById("content1").value=infowindow.getContent();
         );
         return markerImage;
     }
-
-
 </script>
 
             <div class="result-lists">
@@ -365,15 +358,11 @@ document.getElementById("content1").value=infowindow.getContent();
                        <span style="color:red">목적지 1</span>
                     </div>
                     <div class="result-list-body">
-                        <p1 id="d1">장소이름 : </p1>
+                        <p1 id="d1">장소이름 : <%= content1 %></p1>
                     </div>
                     <div class="set-button">
                         <form action="/chadlly/customize1" method="POST">
                             <input type=hidden name="kind" value="1">
-                            <input type="hidden" id="nextlat" name="nextlat" value=<%=curlat%>>
-                            <input type="hidden" id="nextlng" name="nextlng" value=<%=curlng%>>
-                            <input type="hidden" id="content1" name="content1" value="">
-                            
                             <input type=submit class="detail-button" value="설정">
                         </form>
                     </div>
@@ -383,7 +372,7 @@ document.getElementById("content1").value=infowindow.getContent();
                         <span style="color:green">목적지 2</span>
                     </div>
                     <div class="result-list-body">
-                        <p1 id="d2">장소이름 : </p1>
+                        <p1 id="d2">장소이름 : <%= content2 %></p1>
 
                     </div>
 
@@ -406,6 +395,9 @@ document.getElementById("content1").value=infowindow.getContent();
                     <div class="set-button">
                         <form action="/chadlly/customizeDetail" method="POST">
                             <input type=hidden name="kind" value="3">
+                            <input type="hidden" id="nextlat" name="nextlat" value=<%=curlat%>>
+                            <input type="hidden" id="nextlng" name="nextlng" value=<%=curlng%>>
+                            <input type="hidden" id="content3" name="content3" value="">
                             <input type=submit class="detail-button" value="설정">
                         </form>
 
