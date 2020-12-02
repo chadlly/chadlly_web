@@ -34,15 +34,9 @@ router.use('/chaduri', function (req, res, next) {
     l: mapservice.getLocations()
   });
 });
-router.post("/chaduri/search", function (req, res, next) {
-  var _long = req.body.longitude;
-  var lat = req.body.latitude;
-  console.log(_long);
-  console.log(lat);
-  res.render("map_showlocation.ejs", {
-    lati: lat,
-    longi: _long
-  });
+router.get("/chadlly/filter/search", function (req, res, next) {
+  console.log("search page!");
+  res.render("search");
 });
 router.get("/chadlly", function (req, res, next) {
   console.log("index page!");
@@ -54,11 +48,13 @@ router.get("/chadlly/main", function (req, res, next) {
 router.get("/chadlly/filter", function (req, res, next) {
   res.render("filter");
 });
-router.get("/chadlly", function (req, res, next) {
-  res.render("index");
-});
 router.get("/chadlly/course", function (req, res, next) {
-  res.render("detailpage");
+  console.log("course page");
+  mapservice.makeTestRecommends(function (result) {
+    res.render("detailpage", {
+      course: result
+    });
+  });
 });
 router.post("/chadlly/filter_result", function (req, res, next) {
   var select_city = req.body.city;
