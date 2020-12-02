@@ -29,7 +29,22 @@
         </div>
         <div class="contents">
             <div class="kakaomap">
-                카카오맵
+              <div id="map" style="width:800px;height:700px;"></div>
+
+                  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=2c32bcbd6cb55928dc1395f28a59aeec"></script>
+
+              <script>
+                        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                            mapOption = {
+                                center: new kakao.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
+                                level: 3, // 지도의 확대 레벨
+                                mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+                            };
+
+                        // 지도를 생성한다
+                        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+                      </script>
             </div>
             <div class="result-lists">
                 <div class="result-list">
@@ -85,4 +100,3 @@
     </div>
 </body>
 </html>
-
