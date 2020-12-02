@@ -106,7 +106,17 @@ router.get("/chadlly/filter_result", function(req,res,next){
   res.render("filter_result");
 });
 
-router.post("/chadlly/filterDetail", function(req,res,next){
+router.post("/chadlly/filterDetail1", function(req,res,next){
+
+  res.render("filter_detail_page");
+});
+
+router.post("/chadlly/filterDetail2", function(req,res,next){
+
+  res.render("filter_detail_page");
+});
+
+router.post("/chadlly/filterDetail3", function(req,res,next){
 
   res.render("filter_detail_page");
 });
