@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+      <meta charset="UTF-8">
+      <title>추천코스보기</title>
+      <link href="../layout/styles/index.css" rel="stylesheet" type="text/css">
+      <link href="../layout/styles/recommendation.css" rel="stylesheet" type="text/css">
+  </head>
+
+
+ <body>
+     <div id="container">
+      <div class="nav">
+             <div class="nav-left-items">
+                 <img src="../images/logo.png" width="300px" height="50px">
+             </div>
+             <div class="nav-right-items">
+                 <div class="nav-item">
+                     <a href="../index.html">홈으로</a>
+                 </div>
+                 <div class="nav-item">
+                     <a href="../index.html">코스 계획하기</a>
+                 </div>
+                 <div class="nav-item">
+                     <a href="filter.html">코스 필터하기</a>
+                 </div>
+                 <div class="nav-item">
+                     <a href="../index.html">추천 코스보기</a>
+                 </div>
+             </div>
+         </div>
+
+
+
+
+
+
+
+    <div class="contents">
+
+
+    <div id="map" style="width:800px;height:880px;"></div>
+
+      	<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=2c32bcbd6cb55928dc1395f28a59aeec"></script>
+
+  	<script>
+          		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+          		    mapOption = {
+          		        center: new kakao.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
+          		        level: 3, // 지도의 확대 레벨
+          		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+          		    };
+
+          		// 지도를 생성한다
+          		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+          	</script>
+
+
+            <div class="result-lists">
+                <div class="result-list">
+                    <div class="result-list-head">
+                       <span style="color:red">코스 1</span>
+                    </div>
+                    <div class="result-list-body">
+                        테마:<br>
+                        출발지 : 여의도<br>
+                        목적지 1 : 여의도 불꽃축제<br>
+                        목적지 2 : 중앙박물관<br>
+                        목적지 3 :<br>
+                        소요시간 : 2시간<br>
+                        비용 : 무료
+                    </div>
+                    <div class="result-list-button">
+                        <form action="/filterDetail" method="POST">
+                            <input type=hidden name="kind" value="1">
+                            <!-- 여기서는 onclick 쓸건데 나중에 node에서 html send 하셈-->
+                            <input type=button class="detail-button" onclick="location.href='filter_detail_page.html'" value="자세히 보기">
+                        </form>
+                    </div>
+                </div>
+                <div class="result-list">
+                    <div class="result-list-head">
+                        <span style="color:green">코스 2</span>
+                    </div>
+                    <div class="result-list-body">
+                        테마:<br>
+                        출발지 : 여의도<br>
+                        목적지 1 : 여의도 불꽃축제<br>
+                        목적지 2 : 중앙박물관<br>
+                        목적지 3 :<br>
+                        소요시간 : 2시간<br>
+                        비용 : 무료
+                    </div>
+
+                    <div class="result-list-button">
+                        <form action="/filterDetail" method="POST">
+                            <input type=hidden name="kind" value="2">
+                            <input type=button class="detail-button" onclick="location.href='filter_detail_page.html'" value="자세히 보기">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="result-list">
+                    <div class="result-list-head">
+                        <span style="color:blue">코스 3</span>
+                    </div>
+                    <div class="result-list-body">
+                        테마:<br>
+                        출발지 : 여의도<br>
+                        목적지 1 : 여의도 불꽃축제<br>
+                        목적지 2 : 중앙박물관<br>
+                        목적지 3 :<br>
+                        소요시간 : 2시간<br>
+                        비용 : 무료
+                    </div>
+
+                    <div class="result-list-button">
+                        <form action="/filterDetail" method="POST">
+                            <input type=hidden name="kind" value="3">
+                            <input type=button class="detail-button" onclick="location.href='filter_detail_page.html'" value="자세히 보기">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
