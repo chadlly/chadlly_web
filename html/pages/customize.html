@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+      <meta charset="UTF-8">
+      <title>추천코스</title>
+      <link href="../layout/styles/index.css" rel="stylesheet" type="text/css">
+      <link href="../layout/styles/customize.css" rel="stylesheet" type="text/css">
+  </head>
+
+
+ <body>
+     <div id="container">
+      <div class="nav">
+             <div class="nav-left-items">
+                 <img src="../images/logo.png" width="300px" height="50px">
+             </div>
+             <div class="nav-right-items">
+                 <div class="nav-item">
+                     <a href="../index.html">홈으로</a>
+                 </div>
+                 <div class="nav-item">
+                     <a href="../index.html">코스 계획하기</a>
+                 </div>
+                 <div class="nav-item">
+                     <a href="filter.html">코스 필터하기</a>
+                 </div>
+                 <div class="nav-item">
+                     <a href="../index.html">추천 코스보기</a>
+                 </div>
+             </div>
+         </div>
+
+
+
+
+
+
+
+<div class="contents">
+
+<div class= "kakaomap">
+      <div id="map" style="width:800px;height:880px;"></div>
+
+      	<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=2c32bcbd6cb55928dc1395f28a59aeec"></script>
+
+       	<script>
+          		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+          		    mapOption = {
+          		        center: new kakao.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
+          		        level: 3, // 지도의 확대 레벨
+          		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+          		    };
+
+          		// 지도를 생성한다
+          		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+          	</script>
+</div>
+
+            <div class="result-lists">
+                <div class="result-list">
+                    <div class="result-list-head">
+                       <span style="color:red">목적지 1</span>
+                    </div>
+                    <div class="result-list-body">
+                    목적지1이름<br>
+                    테마<br>
+                    </div>
+
+                    <div class="set-button">
+                        <form action="/filterDetail" method="POST">
+                            <input type=hidden name="kind" value="1">
+                            <!-- 여기서는 onclick 쓸건데 나중에 node에서 html send 하셈-->
+                            <input type=button class="set-button" value="설정">
+                        </form>
+                    </div>
+                </div>
+                <div class="result-list">
+                    <div class="result-list-head">
+                        <span style="color:green">목적지 2</span>
+                    </div>
+                    <div class="result-list-body">
+                    목적지2이름<br>
+                    테마<br>
+                    </div>
+
+                    <div class="set-button">
+                        <form action="/filterDetail" method="POST">
+                            <input type=hidden name="kind" value="2">
+                            <input type=button class="set-button" value="설정">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="result-list">
+                    <div class="result-list-head">
+                        <span style="color:blue">목적지 3</span>
+                    </div>
+                    <div class="result-list-body">
+                    목적지3 이름<br>
+                    테마<br>
+                    </div>
+
+                    <div class="set-button">
+                        <form action="/filterDetail" method="POST">
+                            <input type=hidden name="kind" value="3">
+                            <input type=button class="set-button" onclick="location.href='customize_detail.html'" value="설정">
+                        </form>
+
+                    </div>
+                    <script type="text/javascript">
+                    $(".star").on('click',function(){
+var idx = $(this).index();
+$(".star").removeClass("on");
+for(var i=0; i<=idx; i++){
+  $(".star").eq(i).addClass("on");
+}
+});
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

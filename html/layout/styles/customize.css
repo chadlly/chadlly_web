@@ -1,0 +1,53 @@
+.contents{
+    margin-top:10px;
+    width: 1250px;
+    height: 900px;
+    display: flex;
+}
+.kakaomap {
+    width: 800px;
+    height: 880px;
+    border-style:solid;
+    border-color:black;
+    border-width: 1px;
+}
+
+.result-lists{
+  height: 880px;
+    margin-left: 20px;
+    width: 400px;
+    border : 1px solid black;
+}
+
+.result-list{
+    height: 250px;
+    padding: 10px;
+    margin : 15px;
+    border : 1px solid black;
+
+}
+
+.result-list-head{
+    height: 40px;
+    font-size : 1.5em;
+    font-weight: bold;
+    margin-bottom : 5px;
+    border-bottom: 1px solid gray;
+
+}
+
+.result-list-body{
+    height: 170px;
+    border: 1px solid black;
+    padding-top: 5px;
+    font-size: 0.8em;
+    line-height: 25px;
+}
+.set-button{
+    margin-top: 0px;
+    width:350px;
+    height:30px;
+    font-size:1rem;
+    border: 1px solid black;
+    border-top: none;
+}

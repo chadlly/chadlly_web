@@ -1,0 +1,125 @@
+#map{
+    margin: 10px auto;
+    width: 1100px;
+    height: 500px;
+    border: 1px solid black;
+}
+
+.contents{
+    display:flex;
+}
+
+.content-descriptions{
+    margin-left: 50px;
+    padding: 5px;
+    width: 510px;
+    line-height: 35px;
+    border: 1px solid black;
+}
+
+.content-description{
+    border-bottom: 1px groove grey;
+    font-size: 0.8em;
+}
+
+.sub-contents{
+    margin-left: 55px;
+    padding: 5px;
+    width: 510px;
+    line-height: 35px;
+    border: 1px solid black;
+}
+
+.parking{
+    border-bottom: 1px groove grey;
+    font-size: 0.8em;
+    padding-bottom: 10px;
+}
+
+.blind {
+  position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  border: none;
+  clip: rect(0, 0, 0, 0);
+}
+
+/*여기서부터 별점*/
+.title_star{
+  margin-bottom: 10px;
+}
+.rating .rate_radio + label {
+    position: relative;
+    display: inline-block;
+    margin-left: -4px;
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    background-image: url('./images/starrate.png');
+    background-repeat: no-repeat;
+    background-size: 60px 60px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+.rating .rate_radio:checked + label {
+    background-color: #ff8;
+}
+
+.wrap{
+    max-width: 480px;
+    /* margin: 0 auto; /* 화면 가운데로 */ */
+    background-color: #fff;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+
+}
+.reviewform>textarea{
+    width: 100px;
+    height: 30px;
+    padding: 10px;
+}
+.rating .rate_radio {
+    position: relative;
+    display: inline-block;
+    z-index: 20;
+    opacity: 0.001;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    cursor: pointer;
+    vertical-align: top;
+    display: none;
+}
+.rating .rate_radio + label {
+    position: relative;
+    display: inline-block;
+    margin-left: -4px;
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    background-image: url("images/starrate.png");
+    background-repeat: no-repeat;
+    background-size: 60px 60px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+.rating .rate_radio:checked + label {
+    background-color: #ff8;
+}
+
+.warning_msg {
+    display: none;
+    position: relative;
+    text-align: center;
+    background: #ffffff;
+    line-height: 26px;
+    width: 100%;
+    color: red;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #e0e0e0;
+}
