@@ -8,7 +8,7 @@
     width: 800px;
     height: 880px;
     border-style:solid;
-    border-color:red;
+    border-color:black;
     border-width: 1px;
 }
 
@@ -43,7 +43,7 @@
     font-size: 0.8em;
     line-height: 25px;
 }
-.detail-button{
+.set-button{
     margin-top: 0px;
     width:350px;
     height:30px;
