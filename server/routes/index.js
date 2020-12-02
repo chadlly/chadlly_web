@@ -57,19 +57,16 @@ router.get("/chadlly", function(req,res,next){
 
 router.get("/chadlly/main", function(req,res,next){
   
-  console.log("main page!");
   res.render('main');
 });
 
 router.get("/chadlly/filter", function(req,res,next){
 
-  console.log("search page");
   res.render("filter");
 });
 
 router.get("/chadlly", function(req,res,next){
 
-  console.log("search page");
   res.render("index");
 });
 
@@ -77,15 +74,23 @@ router.get("/chadlly", function(req,res,next){
 
 router.get("/chadlly/course", function(req,res,next){
 
-  console.log("course page");
   res.render("detailpage");
 });
 
 
 router.post("/chadlly/filter_result", function(req,res,next){
 
-  console.log("course page");
-  res.render("detailpage");
+  res.render("filter_result");
+});
+
+router.get("/chadlly/recommends", function(req,res,next){
+
+  res.render("recommendation");
+});
+
+router.get("/chadlly/customize", function(req,res,next){
+
+  res.render("customize");
 });
 
 

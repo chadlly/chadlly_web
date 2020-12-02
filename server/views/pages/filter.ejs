@@ -12,37 +12,25 @@
     <div id="container">
         <div class="nav">
             <div class="nav-left-items">
-                <img src="../images/logo.png" width="300px" height="50px">
+                <img src="/images/logo.png" width="300px" height="50px">
             </div>
             <div class="nav-right-items">
-                <!-- <div class="nav-item">
-                    <a href="../index.html">홈으로</a>
-                </div> -->
-                <form action="/chadlly" method="get">
-                    <input type='submit' class='btn' name='btn' value='홈으로'>
-                </form>
-                <!-- <div class="nav-item">
-                    <a href="../index.html">코스 계획하기</a>
-                </div> -->
-                <form action="/chadlly/plan" method="get">
-                    <input type='submit' class='btn' name='btn' value='코스 계획하기'>
-                </form>
-                <!-- <div class="nav-item">
-                    <a href="filter.html">코스 필터하기</a>
-                </div> -->
-                <form action="/chadlly/filter" method="get">
-                    <input type='submit' class='btn' name='btn' value='코스 필터하기'>
-                </form>
-                <!-- <div class="nav-item">
-                    <a href="../index.html">추천 코스보기</a>
-                </div> -->
-                <form action="/chadlly/recommend" method="get">
-                    <input type='submit' class='btn' name='btn' value='추천 코스보기'>
-                </form>
+                <div class="nav-item">
+                    <a href="../chadlly">홈으로</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../chadlly/customize">코스 계획하기</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../chadlly/filter">코스 필터하기</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../chadlly/recommends">추천 코스보기</a>
+                </div>
             </div>
         </div>
 
-        <form action="/user_type_input" method="POST">
+        <form action="/chadlly/filter_result" method="POST">
             <div class="contents">
                 <div class="question">
                     <div class="query">어디서 출발 할까요?</div>
@@ -117,7 +105,7 @@
                 </div>
             </div>
             <div class="transmit">
-                <input type=button class="complete" onclick="location.href='filter_result.html'" value="입력완료">
+                <input type=submit class="complete" value="입력완료">
             </div>
         </form>
     </div>
