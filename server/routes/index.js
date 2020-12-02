@@ -121,6 +121,11 @@ router.get("/chadlly/customize", function(req,res,next){
   res.render("customize");
 });
 
+router.post("/chadlly/customizeDetail", function(req,res,next){
+
+  res.render("customize_detail");
+});
+
 
 
 
