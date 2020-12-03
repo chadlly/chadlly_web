@@ -202,8 +202,9 @@ function bestCategory(array, callback) {
     var best = []
     var i, j;
     for(i = 0; i<7; i++) {
-        
-        best.push(array[i][getRandomInt(0,100)]);
+        var len = array[i].length;
+        console.log("ffff", len);
+        best.push(array[i][getRandomInt(0,len)]);
     }
     //console.log(best);
     callback(best.length, best);
