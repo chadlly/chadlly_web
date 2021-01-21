@@ -24,6 +24,10 @@ const locationSchema = new Schema({
         required: true,
         unique: false,
     },
+    weight: {
+        type: Number,
+        required: false,
+        unique: false,
+    },
 })
-
 module.exports = mongoose.model("Location", locationSchema);

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+      <meta charset="UTF-8">
+      <title>추천코스</title>
+      <link href="../layout/styles/index.css" rel="stylesheet" type="text/css">
+      <link href="../layout/styles/customize.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <style>
+    .contents {
+        width: 1200px;
+        margin: 0px auto;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
+        align-items: center;
+    }
+    .course {
+        padding: 10px;
+        height: 50px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: black;
+    }
+    .wrap {
+        position: absolute;
+        left: 0;
+        bottom: 40px;
+        width: 288px;
+        height: 132px;
+        margin-left: -144px;
+        text-align: left;
+        overflow: hidden;
+        font-size: 12px;
+        font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+        line-height: 1.5;
+    }
+    .wrap * {
+        padding: 0;
+        margin: 0;
+    }
+    .wrap .info {
+        width: 286px;
+        height: 120px;
+        border-radius: 5px;
+        border-bottom: 2px solid #ccc;
+        border-right: 1px solid #ccc;
+        overflow: hidden;
+        background: #fff;
+    }
+    .wrap .info:nth-child(1) {
+        border: 0;
+        box-shadow: 0px 1px 2px #888;
+    }
+    .info .title {
+        padding: 5px 0 0 10px;
+        height: 30px;
+        background: #eee;
+        border-bottom: 1px solid #ddd;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .info .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #888;
+        width: 17px;
+        height: 17px;
+        background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+    }
+    .info .close:hover {
+        cursor: pointer;
+    }
+    .info .body {
+        position: relative;
+        overflow: hidden;
+    }
+    .info .desc {
+        position: relative;
+        margin: 13px 0 0 90px;
+        height: 75px;
+    }
+    .desc .ellipsis {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .desc .jibun {
+        font-size: 11px;
+        color: #888;
+        margin-top: -2px;
+    }
+    .info .img {
+        position: absolute;
+        top: 6px;
+        left: 5px;
+        width: 73px;
+        height: 71px;
+        border: 1px solid #ddd;
+        color: #888;
+        overflow: hidden;
+    }
+    .info:after {
+        content: '';
+        position: absolute;
+        margin-left: -12px;
+        left: 50%;
+        bottom: 0;
+        width: 22px;
+        height: 12px;
+        background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+    }
+    .info .link {
+        color: #5085BB;
+    }
+</style>
+
+
+
+ <body>
+     <div id="container">
+      <div class="nav">
+             <div class="nav-left-items">
+                 <img src="../images/logo.png" width="300px" height="50px">
+             </div>
+             <div class="nav-right-items">
+                 <div class="nav-item">
+                     <a href="../chadlly">홈으로</a>
+                 </div>
+                 <div class="nav-item">
+                     <a href="../chadlly/customize">코스 계획하기</a>
+                 </div>
+                 <div class="nav-item">
+                     <a href="../chadlly/filter">코스 필터하기</a>
+                 </div>
+                 <div class="nav-item">
+                     <a href="../chadlly/recommends">추천 코스보기</a>
+                 </div>
+             </div>
+         </div>
+<div class="contents">
+
+<div class= "kakaomap">
+      <div id="map" style="width:800px;height:880px;"></div>
+
+      	<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=070f591babf3005f334087e618dad67b"></script>
+</div>
+<!-- variables recieved -->
+<input type="hidden" id="curlat" name="curlat" value=<%=curlat%>>
+<input type="hidden" id="curlng" name="curlng" value=<%=curlng%>>
+
+<% for(var i = 0; i<l.length; i++) { %>
+        <!-- apply a class to the selected element -->
+        <input type="hidden" id='lat<%=i%>' value="<%= l[i].latitude%>">
+        <input type="hidden" id='lng<%=i%>' value="<%= l[i].longitude%>">
+        <input type="hidden" id='name<%=i%>' value="<%= l[i].name%>">
+        <input type="hidden" id='cat<%=i%>' value="<%= l[i].category%>">
+        
+<% } %>
+
+
+
+
+
+
+
+<script>
+
+    var curlat = Number(document.getElementById("curlat").value);
+    var curlng = Number(document.getElementById("curlng").value);
+
+    var lat = []
+    var lng = []
+    var namee = []
+    var cat = []
+
+    for(var i = 0; i <7; i++){
+        lat.push(Number(document.getElementById("lat"+i).value));
+        lng.push(Number(document.getElementById("lng"+i).value));
+        namee.push(document.getElementById("name"+i).value);
+        cat.push(Number(document.getElementById("cat"+i).value));
+        console.log(lat[i]+"fuck"+lng[i]);
+    }
+
+    //console.log(lat);
+
+    
+
+    var MARKER_WIDTH = 33, // 기본, 클릭 마커의 너비
+        MARKER_HEIGHT = 36, // 기본, 클릭 마커의 높이
+        OFFSET_X = 12, // 기본, 클릭 마커의 기준 X좌표c
+        OFFSET_Y = MARKER_HEIGHT, // 기본, 클릭 마커의 기준 Y좌표
+        OVER_MARKER_WIDTH = 40, // 오버 마커의 너비s
+        OVER_MARKER_HEIGHT = 42, // 오버 마커의 높이
+        OVER_OFFSET_X = 13, // 오버 마커의 기준 X좌표
+        OVER_OFFSET_Y = OVER_MARKER_HEIGHT, // 오버 마커의 기준 Y좌표
+        SPRITE_MARKER_URL = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markers_sprites2.png', // 스프라이트 마커 이미지 URL
+        SPRITE_WIDTH = 126, // 스프라이트 이미지 너비
+        SPRITE_HEIGHT = 146, // 스프라이트 이미지 높이
+        SPRITE_GAP = 10; // 스프라이트 이미지에서 마커간 간격
+    var markerSize = new kakao.maps.Size(MARKER_WIDTH, MARKER_HEIGHT), // 기본, 클릭 마커의 크기
+        markerOffset = new kakao.maps.Point(OFFSET_X, OFFSET_Y), // 기본, 클릭 마커의 기준좌표
+        overMarkerSize = new kakao.maps.Size(OVER_MARKER_WIDTH, OVER_MARKER_HEIGHT), // 오버 마커의 크기
+        overMarkerOffset = new kakao.maps.Point(OVER_OFFSET_X, OVER_OFFSET_Y), // 오버 마커의 기준 좌표
+        spriteImageSize = new kakao.maps.Size(SPRITE_WIDTH, SPRITE_HEIGHT); // 스프라이트 이미지의 크기
+    
+    var homeMarkerSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+    var imageSize = new kakao.maps.Size(24, 35);
+    var homeMarkerImage = new kakao.maps.MarkerImage(homeMarkerSrc, imageSize); 
+
+    var dbpositions = [];
+
+    for(var i = 0; i < 7; i++){
+
+        dbpositions.push({
+            content: "<div>"+namee[i]+"</div>",
+            latlng: new kakao.maps.LatLng(Number(lat[i]), Number(lng[i])),
+            flag: false
+        })
+    }
+
+    console.log(dbpositions);
+
+    var positions = [
+        {
+            content: '<div> <%= l[0] %> </div>',
+            latlng: new kakao.maps.LatLng(33.452936, 126.52477),
+            flag: false
+        },
+        {
+            content: '<div><%= l[1] %></div>',
+            latlng: new kakao.maps.LatLng(33.450936, 126.569477),
+            flag: false
+        },
+        {
+            content: '<div><%= l[2] %></div>',
+            latlng: new kakao.maps.LatLng(33.450879, 126.569940),
+            flag: false
+        },
+        {
+            content: '<div><%= l[3] %></div>',
+            latlng: new kakao.maps.LatLng(33.451393, 126.570738),
+            flag: false
+        }
+    ],
+        seletedInfo = null,
+        selectedMarker = null;
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(curlat, curlng), // 지도의 중심좌표
+            level: 8 // 지도의 확대 레벨
+        };
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    var homeMarker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: new kakao.maps.LatLng(curlat, curlng),//new kakao.maps.LatLng(curlat, curlng), // 마커를 표시할 위치
+        title : "출발위치", // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : homeMarkerImage // 마커 이미지 
+    });
+
+    homeMarker.setMap(map);
+    // 지도 위에 마커를 표시합니다
+    console.log("i+"+dbpositions.length);
+
+
+    for (var i = 0, len = dbpositions.length; i < len; i++) {
+        var gapX = (MARKER_WIDTH+SPRITE_GAP), // 스프라이트 이미지에서 마커로 사용할 이미지 X좌표 간격 값
+            originY = (MARKER_HEIGHT + SPRITE_GAP)*0, // 스프라이트 이미지에서 기본, 클릭 마커로 사용할 Y좌표 값
+            overOriginY = (OVER_MARKER_HEIGHT + SPRITE_GAP) * i, // 스프라이트 이미지에서 오버 마커로 사용할 Y좌표 값
+            normalOrigin = new kakao.maps.Point(0, originY), // 스프라이트 이미지에서 기본 마커로 사용할 영역의 좌상단 좌표
+            clickOrigin = new kakao.maps.Point(gapX, originY), // 스프라이트 이미지에서 마우스오버 마커로 사용할 영역의 좌상단 좌표
+            overOrigin = new kakao.maps.Point(gapX * 2, overOriginY); // 스프라이트 이미지에서 클릭 마커로 사용할 영역의 좌상단 좌표
+        // 마커를 생성하고 지도위에 표시합니다x
+        console.log("i+"+dbpositions[i]);
+        addMarker(dbpositions[i].latlng, normalOrigin, overOrigin, clickOrigin, dbpositions[i].flag, dbpositions[i].content);
+    }
+    // add home marker
+    
+    
+    // 마커를 생성하고 지도 위에 표시하고, 마커에 mouseover, mouseout, click 이벤트를 등록하는 함수입니다
+    function addMarker(position, normalOrigin, overOrigin, clickOrigin, flag, content) {
+        // 기본 마커이미지, 오버 마커이미지, 클릭 마커이미지를 생성합니다
+        var normalImage = createMarkerImage(markerSize, markerOffset, normalOrigin),
+            overImage = createMarkerImage(overMarkerSize, overMarkerOffset, overOrigin),
+            clickImage = createMarkerImage(markerSize, markerOffset, clickOrigin);
+        // 마커를 생성하고 이미지는 기본 마커 이미지를 사용합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: position,
+          //ㄴ  image: normalImage
+        });
+        console.log("이게 몇번 실행?");
+
+        var infowindow = new kakao.maps.InfoWindow({
+            content: content // 인포윈도우에 표시할 내용
+        });
+        // 마커 객체에 마커아이디와 마커의 기본 이미지를 추가합니다
+//marker.normalImage = normalImage;
+        // 마커에 mouseover 이벤트를 등록합니다
+        // 마커에 click 이벤트를 등록합니다
+        // 마커에 click 이벤트를 등록합니다
+        kakao.maps.event.addListener(marker, 'click', function () {
+            
+            if (!selectedMarker || selectedMarker !== marker) {
+
+// 클릭된 마커 객체가 null이 아니면
+// 클릭된 마커의 이미지를 기본 이미지로 변경하고
+
+!!selectedMarker && selectedMarker.setImage(selectedMarker.normalImage);
+
+// 현재 클릭된 마커의 이미지는 클릭 이미지로 변경합니다
+marker.setImage(clickImage);
+}
+
+
+// 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
+selectedMarker = marker;
+console.log(selectedMarker.getPosition().getLat());
+
+            if (infowindow == seletedInfo) {
+                infowindow.close();
+                seletedInfo = null;
+                console.log("fuck");
+            } else if (infowindow != seletedInfo) {
+                if (seletedInfo == null) {
+                    infowindow.open(map, marker);
+                    seletedInfo = infowindow;
+                } else {
+                    seletedInfo.close();
+                    infowindow.open(map, marker);
+                    seletedInfo = infowindow;
+                }
+            }
+
+document.getElementById("d1").innerHTML = "장소 이름: "+ infowindow.getContent();
+document.getElementById("nextlat").value=selectedMarker.getPosition().getLat();
+document.getElementById("nextlng").value=selectedMarker.getPosition().getLng();
+document.getElementById("content1").value=infowindow.getContent();
+            
+        });
+        //marker.setMap(map);
+    }
+    // MakrerImage 객체를 생성하여 반환하는 함수입니다
+    function createMarkerImage(markerSize, offset, spriteOrigin) {
+        var markerImage = new kakao.maps.MarkerImage(
+            SPRITE_MARKER_URL, // 스프라이트 마커 이미지 URL
+            markerSize, // 마커의 크기res.locals.error
+            {
+                offset: offset, // 마커 이미지에서의 기준 좌표
+                spriteOrigin: spriteOrigin, // 스트라이프 이미지 중 사용할 영역의 좌상단 좌표
+                spriteSize: spriteImageSize // 스프라이트 이미지의 크기
+            }
+        );
+        return markerImage;
+    }
+
+
+</script>
+
+            <div class="result-lists">
+                <div class="result-list">
+                    <div class="result-list-head">
+                       <span style="color:red">목적지 1</span>
+                    </div>
+                    <div class="result-list-body">
+                        <p1 id="d1">장소이름 : </p1>
+                    </div>
+                    <div class="set-button">
+                        <form action="/chadlly/customize1" method="POST">
+                            <input type=hidden name="kind" value="1">
+                            <input type="hidden" id="nextlat" name="nextlat" value=<%=curlat%>>
+                            <input type="hidden" id="nextlng" name="nextlng" value=<%=curlng%>>
+                            <input type="hidden" id="content1" name="content1" value="">
+                            
+                            <input type=submit class="detail-button" value="설정">
+                        </form>
+                    </div>
+                </div>
+                <div class="result-list">
+                    <div class="result-list-head">
+                        <span style="color:green">목적지 2</span>
+                    </div>
+                    <div class="result-list-body">
+                        <p1 id="d2">장소이름 : </p1>
+
+                    </div>
+
+                    <div class="set-button">
+                        <form action="/chadlly/customize2" method="POST">
+                            <input type=hidden name="kind" value="2">
+                            <input type=submit class="detail-button" value="설정">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="result-list">
+                    <div class="result-list-head">
+                        <span style="color:blue">목적지 3</span>
+                    </div>
+                    <div class="result-list-body">
+                        <p1 id="d3"> 장소이름 : </p1>
+                    </div>
+
+                    <div class="set-button">
+                        <form action="/chadlly/customizeDetail" method="POST">
+                            <input type=hidden name="kind" value="3">
+                            <input type=submit class="detail-button" value="설정">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

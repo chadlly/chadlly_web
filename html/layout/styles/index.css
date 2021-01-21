@@ -1,0 +1,45 @@
+#container {
+    width: 1200px;
+    padding: 20px;			
+    margin: 0 auto;
+    border: 1px solid black;
+}
+#chadlly-image{
+    width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+    align-items: center;
+}
+#main-content{
+    width: 1200px;
+    height: 100px;
+    margin: 0 auto;
+    align-items: center;
+}
+.nav {
+    height: 70px;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+}
+.nav-left-items{
+    width: 100px;
+    padding-left: 30px;
+}
+.nav-right-items{
+    display: flex;
+    margin-left: auto;
+    margin-right: 30px;
+}
+.nav-item{
+    margin-left: 30px;
+    border-bottom: 1px solid gray;
+    font-size: 2em;
+}
+.index-main{
+    height: 700px;
+}
+
+a:link { color: black; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: red; text-decoration: none;}

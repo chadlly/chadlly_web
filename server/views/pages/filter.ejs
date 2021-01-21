@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>코스짜기</title>
+    <link href="../layout/styles/index.css" rel="stylesheet" type="text/css">
+    <link href="../layout/styles/filter.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="container">
+        <div class="nav">
+            <div class="nav-left-items">
+                <img src="/images/logo.png" width="300px" height="50px">
+            </div>
+            <div class="nav-right-items">
+                <div class="nav-item">
+                    <a href="../chadlly">홈으로</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../chadlly/customize">코스 계획하기</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../chadlly/filter">코스 필터하기</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../chadlly/recommends">추천 코스보기</a>
+                </div>
+            </div>
+        </div>
+
+        <form action="/chadlly/filterResult" method="POST">
+            <div class="contents">
+                <div class="question">
+                    <div class="query">어디서 출발 할까요?</div>
+                    <input type="text" class="select-answer" placeholder="서울시" id="city" name="city">
+                </div>
+                <div class="question">
+                    <div class="query">날짜를 정해주세요.</div>
+                    <input type=date class="select-answer" id="date" name="date">
+                </div>
+                <div class="question">
+                    <div class="query">시간대를 정해주세요.</div>
+                    <select class="select-answer" id="timezone" name="timezone">
+                        <option value="morning">아침</option>
+                        <option value="afternoon">점심</option>
+                        <option value="evening">저녁</option>
+                        <option value="night">밤</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <div class="query">테마를 정해주세요.</div>
+                    <select class="select-answer" id="thema" name="thema">
+                        <option value="couple">커플끼리</option>
+                        <option value="fun">신나는</option>
+                        <option value="activity">활동적인</option>
+                        <option value="quiet">잠잠한</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <div class="query">동반인원 정해주세요.</div>
+                    <select class="select-answer" id="headcount" name="headcount">
+                        <option value="1">1인</option>
+                        <option value="2">2인</option>
+                        <option value="3">3인</option>
+                        <option value="4">4인이상</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <div class="query">소요 시간을 정해주세요.</div>
+                    <select class="select-answer"  id="time" name="time">
+                        <option value="1">1시간 미만</option>
+                        <option value="2">1시간 ~ 2시간</option>
+                        <option value="3">2시간 ~ 3시간</option>
+                        <option value="4">3시간 이상</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <div class="query">여기는 꼭 가고 싶어요.</div>
+                    <select class="select-answer"  id="place" name="place">
+                        <option value="박물관">박물관</option>
+                        <option value="야영지">야영지</option>
+                        <option value="낚시터">낚시터</option>
+                        <option value="휴양림">휴양림</option>
+                        <option value="가로수길">가로수길</option>
+                        <option value="향토문화유적">향토문화유적</option>
+                        <option value="관광지">관광지</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <div class="query">예상 비용을 정해주세요.</div>
+                    <select class="select-answer"  id="fee" name="fee">
+                        <option value="free">무료</option>
+                        <option value="1">1만원 이하</option>
+                        <option value="3">3만원 이하</option>
+                        <option value="5">5만원 이하</option>
+                        <option value="nomatter">상관없음</option>
+                    </select>
+                </div>
+            </div>
+            <div class="transmit">
+                <input type=submit class="complete" value="입력완료">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
