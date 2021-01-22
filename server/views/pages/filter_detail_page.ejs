@@ -26,10 +26,16 @@
 					<a href="../chadlly/filter">코스 필터하기</a>
 				</div>
 				<div class="nav-item">
-					<a href="../chadlly/recommends">추천 코스보기</a>
+					<a href="../chadlly/filterResult">추천 코스보기</a>
 				</div>
 			</div>
 		</div>
+
+		<% for(var i = 0; i< 3; i++) { %>
+			<!-- apply a class to the selected element -->
+			<input type="hidden" id='lat<%=i%>' value="<%= lats[i] %>">
+			<input type="hidden" id='lng<%=i%>' value="<%= lngs[i] %>">
+		<% } %>
 
 		<div id="map">
 
@@ -37,31 +43,60 @@
 
 		<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=070f591babf3005f334087e618dad67b"></script>
 		<script>
+			var lats = [];
+			var lngs = [];
+
+			for(var i = 0; i < 3; i ++){
+				var lattemp = Number(document.getElementById("lat"+i).value);
+				var lngtemp = Number(document.getElementById("lng"+i).value);
+				
+				lats.push(lattemp);
+				lngs.push(lngtemp);
+			}
+
+			console.log(lats);
+			console.log(lngs);
+
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 				mapOption = {
 					center: new kakao.maps.LatLng(37.56691, 126.98017), // 지도의 중심좌표
-					level: 4, // 지도의 확대 레벨
+					level: 9, // 지도의 확대 레벨
 					mapTypeId: kakao.maps.MapTypeId.ROADMAP // 지도종류
 				};
 			var map = new kakao.maps.Map(mapContainer, mapOption);
+
+
+
+			for(var i =0; i < 3; i++){
+			
+				var marker = new kakao.maps.Marker({
+					map: map,
+					position: new kakao.maps.LatLng(lats[i], lngs[i]),
+				});
+
+				//marker.setMap(map);
+			}
+		
+		
 		</script>
 
 		<div class="contents">
 			<div class="content-descriptions">
 				<div class="content-description">
-					출발 지점 :
+					출발 지점 : <%= startt %> 
 				</div>
 				<div class="content-description">
-					코스 :
+					코스 :  <%= names[0] %>   <%= names[1] %>   <%= names[2] %> 
 				</div>
 				<div class="content-description">
-					예상 거리 :
+					예상 거리 : 80km
 				</div>
 				<div class="content-description">
-					주요 장소 :
+					주요 장소 : <%= mainplace %> 
+
 				</div>
 				<div class="content-description">
-					비용 :
+					비용 : 약 4000 원
 				</div>
 			</div>
 
@@ -75,7 +110,7 @@
 					<!--별그려줘-->
 				</div>
 				<div>
-					<form action="/chadlly/filter_result" method="GET">
+					<form action="/chadlly/filterResult" method="POST">
 					<input type=submit class="back-button" value="뒤로 가기"></form>
 				</div>
 			</div>

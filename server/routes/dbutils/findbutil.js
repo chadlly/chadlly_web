@@ -192,14 +192,19 @@ function findCategoryByRange({ lat, latdiff, lng, lngdiff }, callback) {
     
 }
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+  }
+
 function bestCategory(array, callback) {
     var best = []
     var i, j;
     for(i = 0; i<7; i++) {
-        for(j=0;j<1;j++) {
-            
-            best.push(array[i][j]);
-        }
+        var len = array[i].length;
+        console.log("ffff", len);
+        best.push(array[i][getRandomInt(0,len)]);
     }
     //console.log(best);
     callback(best.length, best);

@@ -1,7 +1,6 @@
 const dbutil = require("../dbutils/findbutil");
 
-let lat = 37.50;
-let lng = 126.95;
+
 
 function getNearestPlaces(lat, lng, userPref, callback){
     // lat, lng, userpref(1~3), 30km, 60km, 90km
@@ -31,30 +30,83 @@ function getRandomInt(min, max) {
   }
 
 function makeFilteredCourse(lat, lng, time, category, callback) {
-    var course = [];
-    var i = getRandomInt(0, 7);
-    var j = getRandomInt(0, 3);
+    var course1 = [], course2 = [], course3 = [];
+    var random = [], random1 = [], random2 = [];
+    var i, j;
+    var x = getRandomInt(0, 7);
+    var y = getRandomInt(0, 3);
+    
     var k, l;
     dbutil.connectdb(function(){
         getNearestPlaces(lat,lng, time, function(length, result){
             
             for(k=0; k<7; k++) {
                 if(result[k][0].category == category) {
-                    course.push(result[k][j]);
-                    lat=result[k][j].latitude;
-                    lng=result[k][j].longitude;
-                    i = getRandomInt(0, 7);
-                    j = getRandomInt(0, 3);
-                    course.push(result[i][j]);
-                    i = getRandomInt(0, 7);
-                    j = getRandomInt(0, 3);
-                    course.push(result[i][j]);
+                    x=k;
+                    y=getRandomInt(0,3);
+                    random.push([x,0]);
+                    random1.push([x,1]);
+                    random2.push([x,2]);
+                    for(i=0;i<2;i++) {
+                        var check=1;
+                        
+                        while(check == 1) {
+                            check = 0;
+                            x = getRandomInt(0, 7);
+                            y = getRandomInt(0, 3);
+                            for(j=0; j<=i; j++) {
+                                if(random[j] == [x,y]) {
+                                    check = 1;
+                                }
+                            }
+                        }
+                        random.push([x,y]);
+                    }
+                    for(i=0;i<2;i++) {
+                        var check=1;
+                        
+                        while(check == 1) {
+                            check = 0;
+                            x = getRandomInt(0, 7);
+                            y = getRandomInt(0, 3);
+                            for(j=0; j<=i; j++) {
+                                if(random1[j] == [x,y]) {
+                                    check = 1;
+                                }
+                            }
+                        }
+                        random1.push([x,y]);
+                    }
+                    for(i=0;i<2;i++) {
+                        var check=1;
+                        
+                        while(check == 1) {
+                            check = 0;
+                            x = getRandomInt(0, 7);
+                            y = getRandomInt(0, 3);
+                            for(j=0; j<=i; j++) {
+                                if(random2[j] == [x,y]) {
+                                    check = 1;
+                                }
+                            }
+                        }
+                        random2.push([x,y]);   
+                    }
                     break;
                     
                 }
             }
-            //console.log(course);
-            callback(course.length, course);
+            
+            for(i=0; i<3; i++) {
+                course1.push(result[random[i][0]][random[i][1]]);
+                course2.push(result[random1[i][0]][random1[i][1]]);
+                course3.push(result[random2[i][0]][random2[i][1]]);
+            }
+            callback(course1, course2, course3);
+            // console.log(course1);
+            // console.log(course2);
+            // console.log(course3);
+            
             
         });
     })
@@ -63,21 +115,15 @@ function makeFilteredCourse(lat, lng, time, category, callback) {
 
 }
 
-//makeFilteredCourse(lat, lng, select_time, select_place, function(length, result){
+// makeFilteredCourse(lat, lng, 3, "야영장", function(length, result){
     
-//});
+// });
 
 // getNearestPlacesFiltered(lat, lng, 3, function(length, result){
-//     console.log(result[0].category);
-//     if(result[0].category == "야영장"){
-//         console.log("1");
-//     }
-//     else{
-//         console.log("0");
-//     }
+//     console.log(result);
+    
 // });
 module.exports.getNearestPlacesFiltered = getNearestPlacesFiltered;
 module.exports.makeFilteredCourse = makeFilteredCourse;
-
 
 

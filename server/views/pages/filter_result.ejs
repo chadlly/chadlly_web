@@ -57,21 +57,24 @@
                         <span style="color:red">코스 1</span>
                     </div>
                     <div class="result-list-body">
-                        <p1>목적저 1: <%= course[0].name %></p1><br>
-                        <!-- <p2><%= course[0].address %></p2><br> -->
+                        <p1>목적지 1: <%= course1[0].name %></p1><br>
 
 
-                        <p1>목적저 2: <%= course[1].name %></p1><br>
-                        <!-- <p2><%= course[1].address %></p2><br> -->
+                        <p1>목적지 2: <%= course1[1].name %></p1><br>
 
 
-                        <p1>목적저 3: <%= course[2].name %></p1><br>
-                        <!-- <p2><%= course[2].address %></p2><br> -->
+                        <p1>목적지 3: <%= course1[2].name %></p1><br>
                         
                     </div>
                     <div class="result-list-button">
                         <form action="/chadlly/filterDetail1" method="POST">
                             <input type=hidden name="kind" value="1">
+
+                            <% for(var i = 0; i<3; i++) { %>
+                                <input type="hidden" id='c1lat<%=i%>' name='c1lat<%=i%>' value="<%= course1[i].latitude %>">
+                                <input type="hidden" id='c1lng<%=i%>' name='c1lng<%=i%>' value="<%= course1[i].longitude %>">
+                                <input type="hidden" id='name<%=i%>' name='name<%=i%>' value="<%= course1[i].name %>">                                
+                            <% } %>
                             <!-- 여기서는 onclick 쓸건데 나중에 node에서 html send 하셈-->
                             <input type=submit class="detail-button" value="자세히 보기">
                         </form>
@@ -82,15 +85,22 @@
                         <span style="color:green">코스 2</span>
                     </div>
                     <div class="result-list-body">
-                        출발지 : 여의도<br>
-                        목적지 1 : 여의도 불꽃축제<br>
-                        목적지 2 : 중앙박물관<br>
-                        소요시간 : 2시간<br>
-                        비용 : 무료
+                        <p1>목적지 1: <%= course2[0].name %></p1><br>
+
+
+                        <p1>목적지 2: <%= course2[1].name %></p1><br>
+
+
+                        <p1>목적지 3: <%= course2[2].name %></p1><br>
                     </div>
                     <div class="result-list-button">
                         <form action="/chadlly/filterDetail2" method="POST">
                             <input type=hidden name="kind" value="2">
+                            <% for(var i = 0; i<3; i++) { %>
+                                <input type="hidden" id='c2lat<%=i%>' name='c2lat<%=i%>' value="<%= course2[i].latitude %>">
+                                <input type="hidden" id='c2lng<%=i%>' name='c2lng<%=i%>' value="<%= course2[i].longitude %>">
+                                <input type="hidden" id='name<%=i%>' name='name<%=i%>' value="<%= course2[i].name %>">                                
+                            <% } %>
                             <input type=submit class="detail-button" value="자세히 보기">
                         </form>
                     </div>
@@ -100,11 +110,25 @@
                         <span style="color:blue">코스 3</span>
                     </div>
                     <div class="result-list-body">
-                        코스 3 설명(출발점, 코스, 소요시간, 비용)
+                        <p1>목적지 1: <%= course3[0].name %></p1><br>
+
+
+                        <p1>목적지 2: <%= course3[1].name %></p1><br>
+                        
+
+
+                        <p1>목적지 3: <%= course3[2].name %></p1><br>
+                        
                     </div>
                     <div class="result-list-button">
                         <form action="/chadlly/filterDetail3" method="POST">
                             <input type=hidden name="kind" value="3">
+                            <% for(var i = 0; i<3; i++) { %>
+                                <input type="hidden" id='c3lat<%=i%>' name='c3lat<%=i%>' value="<%= course3[i].latitude %>">
+                                <input type="hidden" id='c3lng<%=i%>' name='c3lng<%=i%>' value="<%= course3[i].longitude %>">
+                                <input type="hidden" id='name<%=i%>' name='name<%=i%>' value="<%= course3[i].name %>">   
+
+                            <% } %>
                             <input type=submit class="detail-button" value="자세히 보기">
                         </form>
                         </form>
